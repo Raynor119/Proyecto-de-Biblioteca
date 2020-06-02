@@ -73,7 +73,7 @@ public class ItemDetailActivity extends AppCompatActivity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            navigateUpTo(new Intent(this, ItemListActivity.class));
+            navigateUpTo(new Intent(this, prestamos.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

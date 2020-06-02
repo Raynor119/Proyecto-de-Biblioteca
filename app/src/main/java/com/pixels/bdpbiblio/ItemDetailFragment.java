@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.pixels.bdpbiblio.dummy.DummyContent;
+import android.widget.*;
 
 /**
  * A fragment representing a single Item detail screen.
@@ -49,6 +50,7 @@ public class ItemDetailFragment extends Fragment {
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
+				Toast.makeText(getActivity(), mItem.content+"", Toast.LENGTH_LONG).show();
                 appBarLayout.setTitle(mItem.content);
             }
         }
@@ -61,6 +63,7 @@ public class ItemDetailFragment extends Fragment {
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
+			//Toast.makeText(getActivity(), mItem.details+"", Toast.LENGTH_LONG).show();
             ((TextView) rootView.findViewById(R.id.item_detail)).setText(mItem.details);
         }
 

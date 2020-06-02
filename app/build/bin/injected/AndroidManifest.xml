@@ -60,7 +60,7 @@
 			android:name=".devolucion"/>
 
 		<activity
-			android:name=".ItemListActivity"
+			android:name=".prestamos"
 			android:theme="@style/AppTheme.NoActionBar"/>
 
 		<activity

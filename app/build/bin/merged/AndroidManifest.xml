@@ -36,7 +36,7 @@
         <activity android:name="com.pixels.bdpbiblio.multa" />
         <activity android:name="com.pixels.bdpbiblio.devolucion" />
         <activity
-            android:name="com.pixels.bdpbiblio.ItemListActivity"
+            android:name="com.pixels.bdpbiblio.prestamos"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.pixels.bdpbiblio.ItemDetailActivity"

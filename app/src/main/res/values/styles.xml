@@ -9,9 +9,9 @@
     </style>
     <style name="AppT" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#09D164</item>
-        <item name="colorPrimaryDark">#2196F3</item>
-        <item name="colorAccent">#8BC34A</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">#03A9F4</item>
     </style>
     <style name="AppTt" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
