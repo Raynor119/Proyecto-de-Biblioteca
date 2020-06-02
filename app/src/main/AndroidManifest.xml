@@ -23,7 +23,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-		</activity>	
+		</activity>
+		<activity
+			android:name=".prestamo"/>
+		<activity
+			android:name=".multa"/>
+		<activity
+			android:name=".devolucion"/>
+			
     </application>
 
 </manifest>

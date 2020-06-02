@@ -1,0 +1,2 @@
+NAME=ProyectoBiblioteca
+FROM_GRADLE=TRUE

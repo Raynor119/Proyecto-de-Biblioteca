@@ -176,7 +176,7 @@
 									android:layout_marginRight="33dp"
 
 									android:layout_marginTop="5dp"
-
+									android:onClick="onclic1"
 
 									card_view:cardBackgroundColor="@android:color/transparent"
 
@@ -209,8 +209,6 @@
 											android:layout_marginRight="5dp"
 
 											android:layout_marginBottom="15dp"
-
-
 											card_view:cardBackgroundColor="@android:color/transparent"
 
 											card_view:cardCornerRadius="20dp">
@@ -218,9 +216,10 @@
 
 											<LinearLayout
 
-												android:layout_width="wrap_content"
+												android:layout_width="match_parent"
+												android:background="@mipmap/prestamos"
 
-												android:layout_height="wrap_content"
+												android:layout_height="match_parent"
 
 												 />
 
@@ -253,7 +252,7 @@
 
 												android:layout_height="wrap_content"
 
-												android:text="VER"
+												android:text="PRESTAMO"
 
 												style="@style/headerText"
 
@@ -282,7 +281,7 @@
 									android:layout_marginTop="45dp"
 
 									android:layout_marginRight="33dp"
-
+									android:onClick="onclic2"
 									card_view:cardBackgroundColor="@android:color/transparent"
 
 									card_view:cardCornerRadius="12dp">
@@ -324,7 +323,7 @@
 											<LinearLayout
 
 												android:layout_width="wrap_content"
-
+												android:background="@mipmap/multa"
 												android:layout_height="wrap_content"
 
 												/>
@@ -389,7 +388,7 @@
 									android:layout_marginRight="33dp"
 
 									android:layout_marginBottom="20dp"
-
+									android:onClick="onclic3"
 									card_view:cardBackgroundColor="@android:color/transparent"
 
 									card_view:cardCornerRadius="10dp">
@@ -432,7 +431,7 @@
 											<LinearLayout
 
 												android:layout_width="wrap_content"
-
+												android:background="@mipmap/devolucion"
 												android:layout_height="wrap_content"
 
 												/>
@@ -468,7 +467,7 @@
 
 												android:layout_height="wrap_content"
 
-												android:text="SE ME OLVIDO"
+												android:text="DEVOLUCION"
 
 												android:textColor="#FFFFFF"
 
@@ -496,7 +495,7 @@
 									android:layout_marginRight="33dp"
 
 									android:layout_marginBottom="20dp"
-
+									android:onClick="onclicksalir"
 									card_view:cardBackgroundColor="@android:color/transparent"
 
 									card_view:cardCornerRadius="10dp">
@@ -540,7 +539,7 @@
 											<LinearLayout
 
 												android:layout_width="wrap_content"
-
+												android:background="@mipmap/salirr"
 												android:layout_height="wrap_content"
 
 											/>
@@ -576,7 +575,7 @@
 
 												android:layout_height="wrap_content"
 
-												android:text="INFORMES"
+												android:text="SALIR"
 
 												android:textColor="#FFFFFF"
 
