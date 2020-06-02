@@ -30,6 +30,18 @@
 			android:name=".multa"/>
 		<activity
 			android:name=".devolucion"/>
+		<activity
+			android:name=".ItemListActivity"
+			android:theme="@style/AppTheme.NoActionBar"/>
+		<activity
+			android:name=".ItemDetailActivity"
+			android:theme="@style/AppTheme.NoActionBar">
+			<meta-data
+
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value="com.pixels.bdpbiblio.ItemListActivity" />
+			
+		</activity>
 			
     </application>
 

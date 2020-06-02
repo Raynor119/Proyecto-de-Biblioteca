@@ -35,6 +35,16 @@
         <activity android:name="com.pixels.bdpbiblio.prestamo" />
         <activity android:name="com.pixels.bdpbiblio.multa" />
         <activity android:name="com.pixels.bdpbiblio.devolucion" />
+        <activity
+            android:name="com.pixels.bdpbiblio.ItemListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.pixels.bdpbiblio.ItemDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pixels.bdpbiblio.ItemListActivity" />
+        </activity>
     </application>
 
 </manifest>
