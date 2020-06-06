@@ -25,11 +25,20 @@
             </intent-filter>
 		</activity>
 		<activity
-			android:name=".prestamo"/>
-		<activity
 			android:name=".multa"/>
+		
 		<activity
-			android:name=".devolucion"/>
+			android:name=".devolucion"
+			android:theme="@style/AppTheme.NoActionBar"/>
+		<activity
+			android:name=".ItemDetailActivity1"
+			android:theme="@style/AppTheme.NoActionBar">
+			<meta-data
+
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value="com.pixels.bdpbiblio.devolucion" />
+
+		</activity>
 		<activity
 			android:name=".prestamos"
 			android:theme="@style/AppTheme.NoActionBar"/>
@@ -39,7 +48,7 @@
 			<meta-data
 
 				android:name="android.support.PARENT_ACTIVITY"
-				android:value="com.pixels.bdpbiblio.ItemListActivity" />
+				android:value="com.pixels.bdpbiblio.prestamos" />
 			
 		</activity>
 			
