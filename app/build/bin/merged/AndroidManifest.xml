@@ -32,7 +32,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.pixels.bdpbiblio.multa" />
+        <activity
+            android:name="com.pixels.bdpbiblio.multa"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.pixels.bdpbiblio.ItemDetailActivity2"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pixels.bdpbiblio.multa" />
+        </activity>
         <activity
             android:name="com.pixels.bdpbiblio.devolucion"
             android:theme="@style/AppTheme.NoActionBar" />
