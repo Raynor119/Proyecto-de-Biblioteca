@@ -61,7 +61,8 @@ public class agregarprestamou extends AppCompatActivity implements View.OnClickL
     ImageButton ibObtenerFecha, ibObtenerHora;
 	private Spinner mSpinner;
 	String codig;
-	public String [] vec= new String[3];
+	int l;
+	public String [] vec;
    
    
 	@Override
@@ -71,13 +72,16 @@ public class agregarprestamou extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_agcu);
 		Bundle extra = getIntent().getExtras();
 		codig=extra.getString("codigo");
+		String nn=extra.getString("saca");
+		l=Integer.parseInt(nn);
+		vec= new String[3-l];
 		etFecha = (EditText) findViewById(R.id.et_mostrar_fecha_picker);
 		ibObtenerFecha = (ImageButton) findViewById(R.id.ib_obtener_fecha);
 		ibObtenerFecha.setOnClickListener(this);
 		ip i=new ip();
 		String ip=i.ip();
 		String Url="http://"+ip+"/busuario.php?codigo="+codig;
-		//Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
+	//Toast.makeText(getApplicationContext(), nn,Toast.LENGTH_LONG).show();
 
 
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Url, new Response.Listener<JSONArray>() {
@@ -216,25 +220,26 @@ public class agregarprestamou extends AppCompatActivity implements View.OnClickL
 					mBuilder.setPositiveButton("Seleccionar", new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialogInterface, int which) {
-								String item = "";
 								
-								int n=0;
-								for (int i = 0; i < mUserItems.size(); i++) {
-									item = item + listItems[mUserItems.get(i)];
-									if (i != mUserItems.size() - 1) {
-										vec[n]=item;
-										item ="";
-										n++;
-									}
-								}
-								vec[n]=item;
-								if(mUserItems.size()> 3){
-									Toast.makeText(getApplicationContext(), "No puede ser mas de tres libros",Toast.LENGTH_LONG).show();
+								if(mUserItems.size()> 3-l){
+									Toast.makeText(getApplicationContext(), "No se puede mas de "+(3-l)+" libros",Toast.LENGTH_LONG).show();
 								}else{
+									String item = "";
+
+									int n=0;
+									for (int i = 0; i < mUserItems.size(); i++) {
+										item = item + listItems[mUserItems.get(i)];
+										if (i != mUserItems.size() - 1) {
+											vec[n]=item;
+											item ="";
+											n++;
+										}
+									}
+									vec[n]=item;
 									item="";
 									
-									for(int i=0;i<vec.length;i++){
-										item=item+"Libro #"+(i+1)+": "+vec[i]+"\n";
+									for(int i=0;i<mUserItems.size();i++){
+										item=item+"Libro #"+(i+1)+": "+vec[i]+"\n\n";
 									}
 									Toast.makeText(getApplicationContext(), item,Toast.LENGTH_LONG).show();
 									TextView lib=(TextView)findViewById(R.id.Libross);

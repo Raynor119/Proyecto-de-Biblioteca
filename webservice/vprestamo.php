@@ -15,7 +15,7 @@
     else
     { 
     //echo 'conexion correctamente';
-    $query = "SELECT idp,fecha,usuario.codigo,nombres,apellidos,tipo_u,(libro.codigo) as codigoL,titulo,valorl,tipo_coleccion FROM ((((prestamo inner join usuario on prestamo.codigo_u=usuario.codigo)inner join persona on usuario.codigo=persona.codigo)inner join libro on prestamo.codigo_L=libro.codigo)inner join coleccion on libro.idcoleccion=coleccion.id)"; 
+    $query = "SELECT idp,prestamo.fecha,usuario.codigo,nombres,apellidos,tipo_u,(libro.codigo) as codigoL,titulo,valorl,tipo_coleccion FROM ((((prestamo inner join usuario on prestamo.codigo_u=usuario.codigo)inner join persona on usuario.codigo=persona.codigo)inner join libro on prestamo.codigo_L=libro.codigo)inner join coleccion on libro.idcoleccion=coleccion.id) where (select count(id_p) from devolucion)=0 or (select id_p from devolucion)!=idp"; 
     $consulta = pg_query($conexion, $query);
     if(!$consulta){
     }else{

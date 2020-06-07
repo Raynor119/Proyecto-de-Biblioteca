@@ -38,7 +38,8 @@ public class prestamos extends AppCompatActivity {
    //  */
     private boolean mTwoPane;
 	private Context content=this;
-	
+	int prestmo=0;
+	int devueltos=0;
 	EditText codig;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +69,194 @@ public class prestamos extends AppCompatActivity {
 								.setPositiveButton("si", new DialogInterface.OnClickListener(){
 									@Override
 									public void onClick(DialogInterface dialog,int which){
+										
+										
+										
+										
+										ip i=new ip();
+										String ip=i.ip();
+										String Url="http://"+ip+"/hayu.php";
+										//Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
 
 
-										String nn=codig.getText().toString();
-										Intent intent=new Intent(prestamos.this,agregarprestamou.class);
-										intent.putExtra("codigo",nn);
-										startActivity(intent);
+										JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Url, new Response.Listener<JSONArray>() {
+
+												@Override
+												public void onResponse(JSONArray response) {
+													JSONObject jo = null;
+													int si=0;
+													for (int i = 0; i < response.length(); i++) {
+														try {
+															jo = response.getJSONObject(i);
+															
+															if(codig.getText().toString().equals(jo.getString("codigo"))){
+																si=1;
+															}
+															
+														} catch (JSONException e) {
+															Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
+
+														}
+													}
+													
+													if(si==1){
+														
+														ip i=new ip();
+														String ip=i.ip();
+
+														String Url="http://"+ip+"/prestamo.php?codigo="+codig.getText().toString();
+														//Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
+
+
+														JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Url, new Response.Listener<JSONArray>() {
+
+																@Override
+																public void onResponse(JSONArray response) {
+																	JSONObject jo = null;
+																	for (int i = 0; i < response.length(); i++) {
+																		try {
+																			jo = response.getJSONObject(i);
+																			prestmo=Integer.parseInt(jo.getString("prestamo"));
+
+																		} catch (JSONException e) {
+																			Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
+
+																		}
+																	}
+																	ip i=new ip();
+																	String ip=i.ip();
+																	String Url1="http://"+ip+"/devueltos.php?codigo="+codig.getText().toString();
+																	//Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
+
+
+																	JsonArrayRequest jsonArrayRequest1=new JsonArrayRequest(Url1, new Response.Listener<JSONArray>() {
+
+																			@Override
+																			public void onResponse(JSONArray response) {
+																				JSONObject jo = null;
+																				for (int i = 0; i < response.length(); i++) {
+																					try {
+																						jo = response.getJSONObject(i);
+																						devueltos=Integer.parseInt(jo.getString("devoueltos"));
+
+
+
+																					} catch (JSONException e) {
+																						Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
+
+																					}
+																				}
+																				//Toast.makeText(getApplicationContext(),"pretados: "+prestmo+" "+"Devueltos: "+devueltos,Toast.LENGTH_LONG).show();
+
+
+																				String nn=codig.getText().toString();
+																				Intent intent=new Intent(prestamos.this,agregarprestamou.class);
+																				intent.putExtra("codigo",nn);
+																				int puede=prestmo-devueltos;
+																				intent.putExtra("saca",puede+"");
+																				if(puede==3){
+																					Toast.makeText(getApplicationContext(),"No puede Sacaer mas Libros hasta que los devuelva",Toast.LENGTH_LONG).show();
+																					
+																				}else{
+																				startActivity(intent);
+																				}
+
+
+
+
+
+
+
+
+																			}
+																		}, new Response.ErrorListener() {
+																			@Override
+																			public void onErrorResponse(VolleyError error) {
+																				new android.os.Handler().postDelayed(new Runnable() {
+
+
+																						@Override
+																						public void run() {
+																							Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
+																							finish();
+																						}},2000);
+																			}
+																		});
+																	RequestQueue requestQueue1;
+																	requestQueue1= Volley.newRequestQueue(getApplicationContext());
+																	requestQueue1.add(jsonArrayRequest1);
+
+
+
+
+
+
+																}
+															}, new Response.ErrorListener() {
+																@Override
+																public void onErrorResponse(VolleyError error) {
+																	new android.os.Handler().postDelayed(new Runnable() {
+
+
+																			@Override
+																			public void run() {
+																				Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
+																				finish();
+																			}},2000);
+																}
+															});
+														RequestQueue requestQueue;
+														requestQueue= Volley.newRequestQueue(getApplicationContext());
+														requestQueue.add(jsonArrayRequest);
+
+
+														
+														
+														
+														
+														
+														
+														
+														
+														
+														
+														
+													}else{
+														
+														Toast.makeText(getApplicationContext(), "el usuario no esta registrado", Toast.LENGTH_LONG).show();
+														
+													}
+													
+													
+													
+													
+													
+													
+													
+													
+
+
+												}
+											}, new Response.ErrorListener() {
+												@Override
+												public void onErrorResponse(VolleyError error) {
+													new android.os.Handler().postDelayed(new Runnable() {
+
+
+															@Override
+															public void run() {
+																Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
+
+															}},2000);
+												}
+											});
+										RequestQueue requestQueue;
+										requestQueue= Volley.newRequestQueue(getApplicationContext());
+										requestQueue.add(jsonArrayRequest);
+										
+										
+
+										
 
 									}
 
