@@ -59,7 +59,9 @@
 				android:value="com.pixels.bdpbiblio.prestamos" />
 			
 		</activity>
-			
+		<activity
+			android:name=".agregarprestamou"
+			android:theme="@style/calendario"/>			
     </application>
 
 </manifest>

@@ -68,7 +68,7 @@ public class ItemDetailFragment extends Fragment {
         
 			//Toast.makeText(getActivity(), mItem.details+"prestamos", Toast.LENGTH_LONG).show();
 			
-            ((TextView) rootView.findViewById(R.id.item_detail)).setText(presN);
+            
 			
 		ip i=new ip();
 		String ip=i.ip();
@@ -99,6 +99,7 @@ public class ItemDetailFragment extends Fragment {
 						}
 						
 					}
+					((TextView) rootView.findViewById(R.id.item_detail)).setText(vs.get(n).getIdp());
 					((TextView) rootView.findViewById(R.id.ltl)).setText(vs.get(n).getTitulo());
 					((TextView) rootView.findViewById(R.id.cdl)).setText(vs.get(n).getCodigoL());
 					((TextView) rootView.findViewById(R.id.vl)).setText(vs.get(n).getValorL());

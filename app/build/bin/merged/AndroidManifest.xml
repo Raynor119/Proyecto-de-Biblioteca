@@ -59,6 +59,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.pixels.bdpbiblio.prestamos" />
         </activity>
+        <activity
+            android:name="com.pixels.bdpbiblio.agregarprestamou"
+            android:theme="@style/calendario" />
     </application>
 
 </manifest>

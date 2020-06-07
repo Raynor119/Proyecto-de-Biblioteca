@@ -19,6 +19,8 @@ import android.content.DialogInterface;import android.content.Intent;import andr
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.zip.Inflater;
+import android.widget.EditText;
 
 /**
  * An activity representing a list of Items. This activity
@@ -36,7 +38,8 @@ public class prestamos extends AppCompatActivity {
    //  */
     private boolean mTwoPane;
 	private Context content=this;
-
+	
+	EditText codig;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +53,64 @@ public class prestamos extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+				AlertDialog.Builder alert= new AlertDialog.Builder(prestamos.this);
+				alert.setMessage("El Usuario ya se habia Registrado")
+					.setCancelable(false)
+					.setPositiveButton("si", new DialogInterface.OnClickListener(){
+						@Override
+						public void onClick(DialogInterface dialog,int which){
+							AlertDialog.Builder alertt= new AlertDialog.Builder(prestamos.this);
+							//alertt.setMessage("El Usuario ya se habia Registrado")
+							View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.dialogocu, null);
+							codig= (EditText) view.findViewById(R.id.codigou);
+							alertt.setView(view)
+								.setCancelable(false)
+								.setPositiveButton("si", new DialogInterface.OnClickListener(){
+									@Override
+									public void onClick(DialogInterface dialog,int which){
+
+
+										String nn=codig.getText().toString();
+										Intent intent=new Intent(prestamos.this,agregarprestamou.class);
+										intent.putExtra("codigo",nn);
+										startActivity(intent);
+
+									}
+
+								})
+								.setNegativeButton("cancelar", new DialogInterface.OnClickListener(){
+									@Override
+									public void onClick(DialogInterface dialog,int which){
+
+
+
+
+									}
+
+								});
+							AlertDialog titulo=alertt.create();
+							titulo.setTitle("Codigo del Usuario");
+							titulo.show();
+							
+							
+							
+						}
+
+					})
+					.setNegativeButton("no", new DialogInterface.OnClickListener(){
+						@Override
+						public void onClick(DialogInterface dialog,int which){
+
+							
+							
+						}
+
+					});
+				AlertDialog titulo=alert.create();
+				titulo.setTitle("Pregunta");
+				titulo.show();
+
+				
             }
         });
 
@@ -119,6 +178,7 @@ public class prestamos extends AppCompatActivity {
 		
         
     }
+	
 
     public static class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
@@ -199,4 +259,6 @@ public class prestamos extends AppCompatActivity {
             }
         }
     }
+	
+	
 }

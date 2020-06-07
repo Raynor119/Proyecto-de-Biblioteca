@@ -252,7 +252,7 @@
 
 												android:layout_height="wrap_content"
 
-												android:text="PRESTAMO"
+												android:text="PRESTAMOS"
 
 												style="@style/headerText"
 
@@ -467,7 +467,7 @@
 
 												android:layout_height="wrap_content"
 
-												android:text="DEVOLUCION"
+												android:text="DEVOLUCIONES"
 
 												android:textColor="#FFFFFF"
 
