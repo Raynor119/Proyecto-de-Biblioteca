@@ -155,10 +155,11 @@ public class prestamos extends AppCompatActivity {
 																				int puede=prestmo-devueltos;
 																				intent.putExtra("saca",puede+"");
 																				if(puede==3){
-																					Toast.makeText(getApplicationContext(),"No puede Sacaer mas Libros hasta que los devuelva",Toast.LENGTH_LONG).show();
+																					Toast.makeText(getApplicationContext(),"El Usuario no puede Sacar mas Libros hasta que los devuelva",Toast.LENGTH_LONG).show();
 																					
 																				}else{
 																				startActivity(intent);
+																				finish();
 																				}
 
 
@@ -283,6 +284,9 @@ public class prestamos extends AppCompatActivity {
 					.setNegativeButton("no", new DialogInterface.OnClickListener(){
 						@Override
 						public void onClick(DialogInterface dialog,int which){
+							Intent intent=new Intent(prestamos.this,agregarpretano.class);
+							startActivity(intent);
+							finish();
 
 							
 							
@@ -348,8 +352,8 @@ public class prestamos extends AppCompatActivity {
 
 							@Override
 							public void run() {
-								Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
-								finish();
+								//Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
+								
 							}},2000);
 				}
 			});

@@ -2,12 +2,12 @@
    
 	<string name="title_item_detail">Item Detail</string>
 
-	<string-array name="labels_array">
-		<item>1</item>
-		<item>2</item>
-		<item>3</item>
-		<item>4</item>
-		<item>5</item>
+	<string-array name="tipoou">
+		<item>estudiante</item>
+		<item>docentes</item>
+		<item>administrativo</item>
+		<item>otros</item>
+		
 		
 	</string-array>
     <string name="app_name">Biblioteca</string>

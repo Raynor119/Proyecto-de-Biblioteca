@@ -87,6 +87,10 @@
 			android:name=".agregarprestamou"
 			android:theme="@style/calendario"/>
 
+		<activity
+			android:name=".agregarpretano"
+			android:theme="@style/calendario"/>
+
 	</application>
 
 </manifest>

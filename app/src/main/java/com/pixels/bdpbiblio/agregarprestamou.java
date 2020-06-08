@@ -38,6 +38,17 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 import java.util.ArrayList;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class agregarprestamou extends AppCompatActivity implements View.OnClickListener {
     private static final String CERO = "0";
@@ -50,7 +61,7 @@ public class agregarprestamou extends AppCompatActivity implements View.OnClickL
     final int mes = c.get(Calendar.MONTH);
     final int dia = c.get(Calendar.DAY_OF_MONTH);
     final int anio = c.get(Calendar.YEAR);
-
+	ArrayList<Integer> mUserItems ;
     //Hora
     final int hora = c.get(Calendar.HOUR_OF_DAY);
     final int minuto = c.get(Calendar.MINUTE);
@@ -154,7 +165,7 @@ public class agregarprestamou extends AppCompatActivity implements View.OnClickL
 					String diaFormateado = (dayOfMonth < 10)? CERO + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth);
 					String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
 
-					etFecha.setText(diaFormateado + BARRA + mesFormateado + BARRA + year);
+					etFecha.setText(mesFormateado + BARRA + diaFormateado + BARRA + year);
 
 
 				}
@@ -165,7 +176,10 @@ public class agregarprestamou extends AppCompatActivity implements View.OnClickL
     }
 	
 	public void onclic(View view){
-		
+		mUserItems = new ArrayList<>();
+		for(int i=0;i<vec.length;i++){
+			vec[i]=null;
+		}
 		ip i=new ip();
 		String ip=i.ip();
 		String Url="http://"+ip+"/nlibros.php";
@@ -194,7 +208,7 @@ public class agregarprestamou extends AppCompatActivity implements View.OnClickL
 						listItems[i]=vs.get(i).getNombreL();
 					}
 					final boolean[] checkedItems;
-					final ArrayList<Integer> mUserItems = new ArrayList<>();
+					
 					checkedItems = new boolean[listItems.length];
 					AlertDialog.Builder mBuilder = new AlertDialog.Builder(agregarprestamou.this);
 					mBuilder.setTitle("Libros");
@@ -241,7 +255,7 @@ public class agregarprestamou extends AppCompatActivity implements View.OnClickL
 									for(int i=0;i<mUserItems.size();i++){
 										item=item+"Libro #"+(i+1)+": "+vec[i]+"\n\n";
 									}
-									Toast.makeText(getApplicationContext(), item,Toast.LENGTH_LONG).show();
+									//Toast.makeText(getApplicationContext(), item,Toast.LENGTH_LONG).show();
 									TextView lib=(TextView)findViewById(R.id.Libross);
 									lib.setText(item);
 								}//mItemSelected.setText(item);
@@ -261,6 +275,8 @@ public class agregarprestamou extends AppCompatActivity implements View.OnClickL
 								for (int i = 0; i < checkedItems.length; i++) {
 									checkedItems[i] = false;
 									mUserItems.clear();
+									TextView lib=(TextView)findViewById(R.id.Libross);
+									lib.setText("");
 									//Toast.makeText(getApplicationContext(), "",Toast.LENGTH_LONG).show();
 									
 								}
@@ -293,12 +309,133 @@ public class agregarprestamou extends AppCompatActivity implements View.OnClickL
         requestQueue.add(jsonArrayRequest);
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	//bonton donde se agregar el prestamo
 	public void onlic(View view){
-		String nn="";
+		TextView lib=(TextView)findViewById(R.id.Libross);
+		if(lib.getText().toString().equals("")){
+			Toast.makeText(getApplicationContext(), "Seleccione Los libros que se van a prestar",Toast.LENGTH_LONG).show();
+			
+		}else{
+			if(etFecha.getText().toString().equals("")){
+				Toast.makeText(getApplicationContext(), "Seleccione La Fecha",Toast.LENGTH_LONG).show();
+				
+			}else{
+				
+				for(int c=0;c< mUserItems.size();c++){
+				
+				ip i=new ip();
+				String ip=i.ip();
+					String Url="http://"+ip+"/codigolibro.php?codigo="+vec[c];
+				//Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
+
+
+				JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Url, new Response.Listener<JSONArray>() {
+
+						@Override
+						public void onResponse(JSONArray response) {
+							JSONObject jo = null;
+							String codigol="";
+							for (int i = 0; i < response.length(); i++) {
+								try {
+									jo = response.getJSONObject(i);
+									codigol=jo.getString("codigo");
+									//vs.add(new vprestamo(jo.getString("idp"), jo.getString("fecha"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u"), jo.getString("codigol"), jo.getString("titulo"), jo.getString("valorl"), jo.getString("tipo_coleccion") ));
+									
+								} catch (JSONException e) {
+									Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
+
+								}
+							}
+							
+							ip i=new ip();
+							String ip=i.ip();
+							String Url="http://"+ip+"/insertprestamo.php?codigo="+codig+"&fecha="+etFecha.getText().toString()+"&codigol="+codigol;
+							//Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
+
+
+							JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Url, new Response.Listener<JSONArray>() {
+
+									@Override
+									public void onResponse(JSONArray response) {
+										JSONObject jo = null;
+										for (int i = 0; i < response.length(); i++) {
+											try {
+												jo = response.getJSONObject(i);
+												//vs.add(new vprestamo(jo.getString("idp"), jo.getString("fecha"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u"), jo.getString("codigol"), jo.getString("titulo"), jo.getString("valorl"), jo.getString("tipo_coleccion") ));
+
+											} catch (JSONException e) {
+												Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
+
+											}
+										}
+
+
+
+
+
+
+									}
+								}, new Response.ErrorListener() {
+									@Override
+									public void onErrorResponse(VolleyError error) {
+										new android.os.Handler().postDelayed(new Runnable() {
+
+
+												@Override
+												public void run() {
+													//Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
+													//finish();
+												}},2000);
+									}
+								});
+							RequestQueue requestQueue;
+							requestQueue= Volley.newRequestQueue(getApplicationContext());
+							requestQueue.add(jsonArrayRequest);
+							
+
+
+
+
+
+
+						}
+					}, new Response.ErrorListener() {
+						@Override
+						public void onErrorResponse(VolleyError error) {
+							new android.os.Handler().postDelayed(new Runnable() {
+
+
+									@Override
+									public void run() {
+										Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
+										finish();
+									}},2000);
+						}
+					});
+				RequestQueue requestQueue;
+				requestQueue= Volley.newRequestQueue(this);
+				requestQueue.add(jsonArrayRequest);
+				
+				
+				
+				}
+				
+				
+				finish();
+			}
+		}
 		
-		//Toast.makeText(getApplicationContext(), nn,Toast.LENGTH_LONG).show();
 		
 	}
+
+	
 	
 	
 

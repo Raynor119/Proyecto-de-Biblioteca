@@ -62,6 +62,9 @@
         <activity
             android:name="com.pixels.bdpbiblio.agregarprestamou"
             android:theme="@style/calendario" />
+        <activity
+            android:name="com.pixels.bdpbiblio.agregarpretano"
+            android:theme="@style/calendario" />
     </application>
 
 </manifest>

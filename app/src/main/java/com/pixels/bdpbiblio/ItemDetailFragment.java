@@ -12,6 +12,7 @@ import android.content.DialogInterface;import android.content.Intent;import andr
 
 import com.pixels.bdpbiblio.dummy.DummyContent;
 import android.widget.*;
+import android.view.View.OnClickListener;
 
 /**
  * A fragment representing a single Item detail screen.
@@ -132,11 +133,39 @@ public class ItemDetailFragment extends Fragment {
         requestQueue= Volley.newRequestQueue(getActivity());
         requestQueue.add(jsonArrayRequest);
 			
-        
+        LinearLayout l=(LinearLayout)rootView.findViewById(R.id.dialogg);
+		l.setOnClickListener(new OnClickListener(){
+
+				@Override
+				public void onClick(View p1)
+				{
+					AlertDialog.Builder alertt= new AlertDialog.Builder(getActivity());
+					//alertt.setMessage("El Usuario ya se habia Registrado")
+					View vie = LayoutInflater.from(getActivity()).inflate(R.layout.librodialog, null);
+
+					alertt.setView(vie)
+						.setCancelable(false)
+						.setPositiveButton("Salir", new DialogInterface.OnClickListener(){
+							@Override
+							public void onClick(DialogInterface dialog,int which){
+
+
+							}		
+						});
+						
+					AlertDialog titulo=alertt.create();
+					titulo.setTitle("Libro");
+					titulo.show();
+				}
+				
+			
+		});
 
         return rootView;
     }
 	public void idpp(String ii){
 		presN=ii;
 	}
+	
+	
 }

@@ -44,6 +44,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginRight="100dp"
 			android:padding="10dp"
+			android:id="@+id/dialogg"
 			android:background="@drawable/carddentro">
 
 			<LinearLayout

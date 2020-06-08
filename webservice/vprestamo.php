@@ -21,9 +21,14 @@
     }else{
         while($row = pg_fetch_array($consulta)){
            $flag[] =$row;  
-        }   
-        print(json_encode($flag));
-     }
+        }
+        $tt=json_encode($flag);
+        if(!$flag){
+            
+        }else{   
+            print(json_encode($flag));
+        }
+    }
     pg_close($conexion);
     }
 
