@@ -39,9 +39,6 @@ public class devolucion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_devolucion);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle(getTitle());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
