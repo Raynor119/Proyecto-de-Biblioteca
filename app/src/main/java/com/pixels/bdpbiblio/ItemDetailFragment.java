@@ -139,23 +139,97 @@ public class ItemDetailFragment extends Fragment {
 				@Override
 				public void onClick(View p1)
 				{
-					AlertDialog.Builder alertt= new AlertDialog.Builder(getActivity());
-					//alertt.setMessage("El Usuario ya se habia Registrado")
-					View vie = LayoutInflater.from(getActivity()).inflate(R.layout.librodialog, null);
+					
+					final List<libro> ll = new ArrayList<>();
+					TextView Texs =(TextView) rootView.findViewById(R.id.cdl);
+					ip i=new ip();
+					String ip=i.ip();
+					String Url="http://"+ip+"/libro.php?codigo="+Texs.getText().toString();
+					//Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
 
-					alertt.setView(vie)
-						.setCancelable(false)
-						.setPositiveButton("Salir", new DialogInterface.OnClickListener(){
+
+					JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Url, new Response.Listener<JSONArray>() {
+
 							@Override
-							public void onClick(DialogInterface dialog,int which){
+							public void onResponse(JSONArray response) {
+								JSONObject jo = null;
+								for (int i = 0; i < response.length(); i++) {
+									try {
+										jo = response.getJSONObject(i);
+										ll.add(new libro(jo.getString("codigo"), jo.getString("titulo"), jo.getString("edicion"), jo.getString("ciudad"), jo.getString("anno"), jo.getString("editorial"), jo.getString("descripcion"), jo.getString("valorl"), jo.getString("nombres"), jo.getString("apellidos") ));
+
+									} catch (JSONException e) {
+										Toast.makeText(getActivity(), "error de Bd", Toast.LENGTH_LONG).show();
+
+									}
+								}
+								AlertDialog.Builder alertt= new AlertDialog.Builder(getActivity());
+								//alertt.setMessage("El Usuario ya se habia Registrado")
+								final View vie = LayoutInflater.from(getActivity()).inflate(R.layout.librodialog, null);
+
+								alertt.setView(vie)
+									.setCancelable(false)
+									.setPositiveButton("Salir", new DialogInterface.OnClickListener(){
+										@Override
+										public void onClick(DialogInterface dialog,int which){
 
 
-							}		
+
+										}		
+									});
+
+								AlertDialog titulo=alertt.create();
+								titulo.setTitle("Libro "+ll.get(0).getTitulo());
+								titulo.show();
+								((TextView) vie.findViewById(R.id.cdl)).setText(ll.get(0).getCodigo());
+								((TextView) vie.findViewById(R.id.tiulo)).setText(ll.get(0).getTitulo());
+								((TextView) vie.findViewById(R.id.edicion)).setText(ll.get(0).getEdicion());
+								((TextView) vie.findViewById(R.id.ciudad)).setText(ll.get(0).getCiudad());
+								((TextView) vie.findViewById(R.id.annon)).setText(ll.get(0).getAnno());
+								((TextView) vie.findViewById(R.id.editorial)).setText(ll.get(0).getEditorial());
+								((TextView) vie.findViewById(R.id.valor)).setText(ll.get(0).getValorl());
+								((TextView) vie.findViewById(R.id.dec)).setText(ll.get(0).getDescripcion());
+								//Toast.makeText(getActivity(), ll.size()+"", Toast.LENGTH_LONG).show();
+								if(ll.size()==1){
+									((TextView) vie.findViewById(R.id.autores)).setText("Autor del Libro: ");
+									((TextView) vie.findViewById(R.id.autor)).setText(""+ll.get(0).getNombres()+" "+ll.get(0).getApellidos());
+
+								}else{
+									String m= "";
+									for(int i=0;i<ll.size();i++){
+										m=m+ll.get(i).getNombres()+" "+ll.get(i).getApellidos()+",";
+									}
+									((TextView) vie.findViewById(R.id.autores)).setText("Autores del Libro: ");
+									((TextView) vie.findViewById(R.id.autor)).setText(m);
+									
+
+								}	
+
+
+
+
+
+
+
+
+							}
+						}, new Response.ErrorListener() {
+							@Override
+							public void onErrorResponse(VolleyError error) {
+								new android.os.Handler().postDelayed(new Runnable() {
+
+
+										@Override
+										public void run() {
+											Toast.makeText(getActivity(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
+
+										}},2000);
+							}
 						});
-						
-					AlertDialog titulo=alertt.create();
-					titulo.setTitle("Libro");
-					titulo.show();
+					RequestQueue requestQueue;
+					requestQueue= Volley.newRequestQueue(getActivity());
+					requestQueue.add(jsonArrayRequest);
+					
 				}
 				
 			
