@@ -17,14 +17,15 @@ import android.view.MenuItem;
  * in a {@link ItemListActivity}.
  */
 public class ItemDetailActivity1 extends AppCompatActivity {
-
+	String ipt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
-
+		Bundle extra = getIntent().getExtras();
+		ipt=extra.getString("ippt");
 
 
         // Show the Up button in the action bar.
@@ -53,6 +54,7 @@ public class ItemDetailActivity1 extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
 				.add(R.id.item_detail_container, fragment)
 				.commit();
+			fragment.idpp(ipt);
         }
     }
 
