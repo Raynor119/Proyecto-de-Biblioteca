@@ -35,6 +35,9 @@ $consulta = pg_query($conexion, $query);
 if(!$consulta){
 
 }else{
+    $flag[]=null;
+
+
 
 while($row = pg_fetch_array($consulta)){
 

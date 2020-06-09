@@ -70,7 +70,7 @@ public class ItemDetailFragment2 extends Fragment {
         
             ip i=new ip();
             String ip=i.ip();
-            String Url="http://"+ip+"/vdevolucion.php";
+            String Url="http://"+ip+"/vmultas.php";
             //Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
 
 
@@ -85,7 +85,7 @@ public class ItemDetailFragment2 extends Fragment {
                                 vs.add(new multaa(jo.getString("idm"), jo.getString("id_d"), jo.getString("vmulta"), jo.getString("multap"),jo.getString("idp"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u"), jo.getString("codigol"), jo.getString("titulo"), jo.getString("valorl"), jo.getString("tipo_coleccion") ));
                                 
                             } catch (JSONException e) {
-                                Toast.makeText(getActivity(), "error de Bd", Toast.LENGTH_LONG).show();
+                              //  Toast.makeText(getActivity(), "error de Bd", Toast.LENGTH_LONG).show();
 
                             }
                         }

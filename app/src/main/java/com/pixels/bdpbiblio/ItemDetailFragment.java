@@ -88,7 +88,7 @@ public class ItemDetailFragment extends Fragment {
 							vs.add(new vprestamo(jo.getString("idp"), jo.getString("fecha"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u"), jo.getString("codigol"), jo.getString("titulo"), jo.getString("valorl"), jo.getString("tipo_coleccion") ));
 
 						} catch (JSONException e) {
-							Toast.makeText(getActivity(), "error de Bd", Toast.LENGTH_LONG).show();
+							//Toast.makeText(getActivity(), "error de Bd", Toast.LENGTH_LONG).show();
 
 						}
 					}

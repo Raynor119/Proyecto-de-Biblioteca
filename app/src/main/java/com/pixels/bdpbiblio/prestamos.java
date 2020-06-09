@@ -365,7 +365,7 @@ public class prestamos extends AppCompatActivity {
                                         vs.add(new vprestamo(jo.getString("idp"), jo.getString("fecha"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u"), jo.getString("codigol"), jo.getString("titulo"), jo.getString("valorl"), jo.getString("tipo_coleccion") ));
 
                                     } catch (JSONException e) {
-                                        Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
+                                       // Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
 
                                     }
                                 }

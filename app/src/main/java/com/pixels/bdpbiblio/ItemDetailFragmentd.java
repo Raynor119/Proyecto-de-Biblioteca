@@ -134,7 +134,7 @@ int dias=3;
                             vs.add(new vprestamo(jo.getString("idp"), jo.getString("fecha"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u"), jo.getString("codigol"), jo.getString("titulo"), jo.getString("valorl"), jo.getString("tipo_coleccion") ));
 
                         } catch (JSONException e) {
-                            Toast.makeText(getActivity(), "error de Bd", Toast.LENGTH_LONG).show();
+                          //  Toast.makeText(getActivity(), "error de Bd", Toast.LENGTH_LONG).show();
 
                         }
                     }
@@ -410,7 +410,7 @@ int dias=3;
                                         if(multaa>cintodiez){
                                             
                                             //si la multa es manor de 110 
-                                            Toast.makeText(getActivity(), " es 110",Toast.LENGTH_LONG).show();
+                                         //   Toast.makeText(getActivity(), " es 110",Toast.LENGTH_LONG).show();
                                             
                                             ip i=new ip();
                                             String ip=i.ip();
@@ -442,7 +442,12 @@ int dias=3;
                                                 });
                                             RequestQueue requestQueue;
                                             requestQueue= Volley.newRequestQueue(getActivity());
-                                            requestQueue.add(jsonArrayRequest);
+											int nnnn=0;
+											if(nnnn==0){
+												requestQueue.add(jsonArrayRequest);
+												nnnn=1;
+											}
+                                           
                                             
                                         
                                                        
@@ -461,7 +466,7 @@ int dias=3;
                                                                             vdd.add(new idd(jo.getString("idd")));
 
                                                                         } catch (JSONException e) {
-                                                                            Toast.makeText(getActivity(), "error de Bd", Toast.LENGTH_LONG).show();
+                                                                           // Toast.makeText(getActivity(), "error de Bd", Toast.LENGTH_LONG).show();
 
                                                                         }
 
@@ -518,9 +523,10 @@ int dias=3;
                                                                 }
                                                             });
                                                        // RequestQueue requestQueue1;
-                                                        requestQueue= Volley.newRequestQueue(getActivity());
-                                                        requestQueue.add(jsonArrayRequest1);
-                                                        
+											if(nnnn==1){
+												requestQueue= Volley.newRequestQueue(getActivity());
+												requestQueue.add(jsonArrayRequest1);
+											}
                                             
                                             
                                             
@@ -532,7 +538,7 @@ int dias=3;
                                             getActivity().finish();
                                             
                                         }else{
-                                            Toast.makeText(getActivity(), " no es 110",Toast.LENGTH_LONG).show();
+                                            //Toast.makeText(getActivity(), " no es 110",Toast.LENGTH_LONG).show();
                                             
                                             //sino supera el 110 porsiento
                                             
@@ -566,10 +572,15 @@ int dias=3;
                                                 });
                                             RequestQueue requestQueue;
                                             requestQueue= Volley.newRequestQueue(getActivity());
+											int nnnn=0;
+											if(nnnn==0){
                                             requestQueue.add(jsonArrayRequest);
-                                          
-                                                        
-                                                        String Url1="http://"+ip+"/iddvp.php?codigo="+codi.getText();
+											nnnn=1;
+															}
+														ip iii=new ip();
+														 ip=iii.ip();
+														
+														String Url1="http://"+ip+"/iddvp.php?codigo="+codi.getText();
                                                         //Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
 
 
@@ -640,10 +651,13 @@ int dias=3;
                                                                             }},2000);
                                                                 }
                                                             });
-                                                     //   RequestQueue requestQueue1;
+                                                       // RequestQueue requestQueue1;
+													   if(nnnn==1){
                                                         requestQueue= Volley.newRequestQueue(getActivity());
                                                         requestQueue.add(jsonArrayRequest2);
-
+														}
+														
+												
                                                 
 
                                             

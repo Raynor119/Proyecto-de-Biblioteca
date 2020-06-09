@@ -19,15 +19,13 @@
     $consulta = pg_query($conexion, $query);
     if(!$consulta){
     }else{
+        $flag[]=null;
         while($row = pg_fetch_array($consulta)){
            $flag[] =$row;  
         }
-        $tt=json_encode($flag);
-        if(!$flag){
-            
-        }else{   
+       
             print(json_encode($flag));
-        }
+        
     }
     pg_close($conexion);
     }

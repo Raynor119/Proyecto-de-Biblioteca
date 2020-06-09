@@ -117,7 +117,7 @@ public class multa extends AppCompatActivity {
                         }
                     }
                     if(vs.size()==0){
-                        Toast.makeText(getApplicationContext(), "No hay devoluciones", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "No hay multas", Toast.LENGTH_LONG).show();
 
                     }else{
 
