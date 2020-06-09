@@ -18,14 +18,43 @@ import com.pixels.bdpbiblio.dummy.DummyContent;
 
 import java.util.List;
 
-/**
- * An activity representing a list of Items. This activity
- * has different presentations for handset and tablet-size devices. On
- * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link ItemDetailActivity} representing
- * item details. On tablets, the activity presents the list of items and
- * item details side-by-side using two vertical panes.
- */
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+
+
+import android.os.Bundle;
+
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;import android.view.Menu;import android.view.MenuItem;import android.view.View;import android.widget.TextView;import android.widget.Toast; import com.android.volley.RequestQueue;import com.android.volley.Response;import com.android.volley.VolleyError;import com.android.volley.toolbox.JsonArrayRequest;import com.android.volley.toolbox.Volley; import org.json.JSONArray;import org.json.JSONException;import org.json.JSONObject; import java.util.ArrayList;import java.util.List;
+
+
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.zip.Inflater;
+import android.widget.EditText;
+
+
+
 public class multa extends AppCompatActivity {
 
     /**
@@ -33,6 +62,7 @@ public class multa extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
+    List<multaa> vs = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,39 +94,88 @@ public class multa extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, mTwoPane));
+        
+        ip i=new ip();
+        String ip=i.ip();
+        String Url="http://"+ip+"/vmultas.php";
+        //Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
+
+
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Url, new Response.Listener<JSONArray>() {
+
+                @Override
+                public void onResponse(JSONArray response) {
+                    JSONObject jo = null;
+                    for (int i = 0; i < response.length(); i++) {
+                        try {
+                            jo = response.getJSONObject(i);
+                            vs.add(new multaa(jo.getString("idm"), jo.getString("id_d"), jo.getString("vmulta"), jo.getString("multap"),jo.getString("idp"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u"), jo.getString("codigol"), jo.getString("titulo"), jo.getString("valorl"), jo.getString("tipo_coleccion") ));
+
+                        } catch (JSONException e) {
+                            //Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
+
+                        }
+                    }
+                    if(vs.size()==0){
+                        Toast.makeText(getApplicationContext(), "No hay devoluciones", Toast.LENGTH_LONG).show();
+
+                    }else{
+
+                        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(multa.this, vs, mTwoPane));
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    new android.os.Handler().postDelayed(new Runnable() {
+
+
+                            @Override
+                            public void run() {
+                                //Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
+
+                            }},2000);
+                }
+            });
+        RequestQueue requestQueue;
+        requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
+        
+        
+       
     }
 
     public static class SimpleItemRecyclerViewAdapter
 	extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final multa mParentActivity;
-        private final List<DummyContent.DummyItem> mValues;
+        private final List<multaa> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
+                multaa item = (multaa) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
-                    arguments.putString(ItemDetailFragment2.ARG_ITEM_ID, item.id);
+                    arguments.putString(ItemDetailFragment2.ARG_ITEM_ID, item.getIdm());
                     ItemDetailFragment2 fragment = new ItemDetailFragment2();
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()
 						.replace(R.id.item_detail_container, fragment)
 						.commit();
+                    fragment.idpp(item.getIdm());
                 } else {
                     Context context = view.getContext();
                     Intent intent = new Intent(context, ItemDetailActivity2.class);
-                    intent.putExtra(ItemDetailFragment2.ARG_ITEM_ID, item.id);
-
+                    intent.putExtra(ItemDetailFragment2.ARG_ITEM_ID, item.getIdm());
+                    intent.putExtra("ippt",item.getIdm());
                     context.startActivity(intent);
                 }
             }
         };
 
         SimpleItemRecyclerViewAdapter(multa parent,
-                                      List<DummyContent.DummyItem> items,
+                                      List<multaa> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;
@@ -112,9 +191,13 @@ public class multa extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
-
+            holder.mIdView.setText(mValues.get(position).getIdm());
+            holder.mContentView.setText(mValues.get(position).getIdm());
+            holder.nn.setText(mValues.get(position).getNombres());
+            holder.mm.setText(mValues.get(position).getTipoU());
+			holder.cop.setText(mValues.get(position).getIdp());
+            holder.idp.setText(mValues.get(position).getId_d());
+            holder.vm.setText(mValues.get(position).getVmulta());
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
         }
@@ -127,11 +210,18 @@ public class multa extends AppCompatActivity {
         class ViewHolder extends RecyclerView.ViewHolder {
             final TextView mIdView;
             final TextView mContentView;
-
+            final TextView nn;
+            final TextView mm,cop,idp,vm;
             ViewHolder(View view) {
                 super(view);
-                mIdView = (TextView) view.findViewById(R.id.id_text1);
-                mContentView = (TextView) view.findViewById(R.id.content1);
+                mIdView = (TextView) view.findViewById(R.id.id_text2);
+                mContentView = (TextView) view.findViewById(R.id.content2);
+                nn = (TextView) view.findViewById(R.id.nm);
+                mm = (TextView) view.findViewById(R.id.tp);
+				cop=(TextView) view.findViewById(R.id.cpp);
+                idp=(TextView) view.findViewById(R.id.id_p);
+                vm=(TextView) view.findViewById(R.id.vm);
+                
             }
         }
     }

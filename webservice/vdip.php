@@ -38,6 +38,8 @@ if(!$consulta){
 
 }else{
 
+    $flag[]=0;
+
 while($row = pg_fetch_array($consulta)){
 
 $flag[] =$row; 

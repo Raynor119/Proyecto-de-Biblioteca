@@ -122,7 +122,7 @@ public class devolucion extends AppCompatActivity {
 												Intent intent=new Intent(devolucion.this,pretamod.class);
                                                 intent.putExtra("codigo",codig.getText().toString());
                                                 startActivity(intent);
-												
+												finish();
 												
 												
 												
@@ -216,8 +216,14 @@ public class devolucion extends AppCompatActivity {
 
 						}
 					}
+                    if(vs.size()==0){
+                        Toast.makeText(getApplicationContext(), "No hay devoluciones", Toast.LENGTH_LONG).show();
+
+                    }else{
+                        
 					
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(devolucion.this, vs, mTwoPane));
+        }
 				}
 			}, new Response.ErrorListener() {
 				@Override
@@ -255,11 +261,14 @@ public class devolucion extends AppCompatActivity {
                     mParentActivity.getSupportFragmentManager().beginTransaction()
 						.replace(R.id.item_detail_container, fragment)
 						.commit();
+                    fragment.idpp(item.getIdd());
                 } else {
                     Context context = view.getContext();
                     Intent intent = new Intent(context, ItemDetailActivity1.class);
                     intent.putExtra(ItemDetailFragment1.ARG_ITEM_ID, item.getIdd());
 					intent.putExtra("ippt",item.getIdd());
+                    //Toast.makeText(context, item.getIdd(),Toast.LENGTH_LONG).show();
+                    
                     context.startActivity(intent);
                 }
             }

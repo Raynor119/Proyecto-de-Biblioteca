@@ -95,7 +95,7 @@ public class pretamod extends AppCompatActivity {
 
                             vss.add(new idd(jo.getString("id_p")));
                         } catch (JSONException e) {
-                            Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
+                           // Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
 
                         }
                     }
@@ -133,10 +133,15 @@ public class pretamod extends AppCompatActivity {
                                         }
                                     }
                                 }
+                                if(vs.size()==0){
+                                    Toast.makeText(getApplicationContext(), "el usuario no tiene prestamos", Toast.LENGTH_LONG).show();
+                                     finish();
+                                }else{
+                                    
 
 
                                 recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(pretamod.this, vs, mTwoPane));
-
+}
 
 
 

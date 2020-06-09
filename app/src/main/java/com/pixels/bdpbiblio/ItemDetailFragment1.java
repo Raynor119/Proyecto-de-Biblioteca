@@ -82,12 +82,14 @@ public class ItemDetailFragment1 extends Fragment {
 					}
 					int n=0;
 					for (int i=0;i<vs.size();i++){
-						if(vs.get(i).getIdp().equals(presN)){
+						if(vs.get(i).getIdd().equals(presN)){
 
 							n=i;
 						}
 
 					}
+                    //Toast.makeText(getActivity(), presN, Toast.LENGTH_LONG).show();
+                    
 					((TextView) rootView.findViewById(R.id.item_detail)).setText(vs.get(n).getIdp());
 					((TextView) rootView.findViewById(R.id.ltl)).setText(vs.get(n).getTitulo());
 					((TextView) rootView.findViewById(R.id.cdl)).setText(vs.get(n).getCodigoL());

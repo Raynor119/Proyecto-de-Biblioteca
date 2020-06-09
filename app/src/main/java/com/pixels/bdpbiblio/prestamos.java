@@ -338,7 +338,7 @@ public class prestamos extends AppCompatActivity {
 
                             vss.add(new idd(jo.getString("id_p")));
                         } catch (JSONException e) {
-                            Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
+                          //  Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
 
                         }
                     }
@@ -376,10 +376,13 @@ public class prestamos extends AppCompatActivity {
                                         }
                                     }
                                 }
-                                
+                                if(vs.size()==0){
+                                    Toast.makeText(getApplicationContext(), "No hay prestamos", Toast.LENGTH_LONG).show();
+                                    
+                                }else{
 
                                 recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(prestamos.this, vs, mTwoPane));
-
+}
 
 
 
