@@ -55,6 +55,7 @@ public class pretamod extends AppCompatActivity {
 	int prestmo=0;
 	int devueltos=0;
 	EditText codig;
+    public static String codi;
     String cod;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -203,12 +204,14 @@ public class pretamod extends AppCompatActivity {
 						.replace(R.id.item_detail_container, fragment)
 						.commit();
 					fragment.idpp(item.getIdp());
+                    codi=item.getIdp();
                 } else {
                     Context context = view.getContext();
                     Intent intent = new Intent(context, ItemDetailActivityd.class);
 
                     intent.putExtra(ItemDetailFragmentd.ARG_ITEM_ID, item.getIdp());
 					intent.putExtra("ippt",item.getIdp());
+                    codi=item.getIdp();
 
                     context.startActivity(intent);
                     finish();
@@ -264,6 +267,9 @@ public class pretamod extends AppCompatActivity {
 				mm = (TextView) view.findViewById(R.id.tp);
             }
         }
+    }
+    public static String co(){
+        return codi;
     }
 
 

@@ -55,7 +55,7 @@ public class ItemDetailFragmentd extends Fragment {
      * The dummy content this fragment is presenting.
      */
 int dias=3;
-    private String presN;
+    String presN="";
     Context nn=getActivity();
     String tipoL;
 
@@ -114,9 +114,13 @@ int dias=3;
 
         ip i=new ip();
         String ip=i.ip();
-        String Url="http://"+ip+"/vprestamo.php";
-        //Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
-
+        if(presN.equals("")){
+            presN=pretamod.co();
+        }
+        String Url="http://"+ip+"/vprestamodr.php?codigo="+presN;
+       // Toast.makeText(getActivity(), presN,Toast.LENGTH_LONG).show();
+       
+      
 
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Url, new Response.Listener<JSONArray>() {
 
