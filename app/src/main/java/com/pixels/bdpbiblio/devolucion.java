@@ -119,7 +119,9 @@ public class devolucion extends AppCompatActivity {
 
 											if(si==1){
 												//si hay usuario
-												
+												Intent intent=new Intent(devolucion.this,pretamod.class);
+                                                intent.putExtra("codigo",codig.getText().toString());
+                                                startActivity(intent);
 												
 												
 												

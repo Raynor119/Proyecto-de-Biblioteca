@@ -74,12 +74,26 @@
 			android:theme="@style/AppTheme.NoActionBar"/>
 
 		<activity
+			android:name=".pretamod"
+			android:theme="@style/AppTheme.NoActionBar"/>
+
+		<activity
 			android:name=".ItemDetailActivity"
 			android:theme="@style/AppTheme.NoActionBar">
 
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="com.pixels.bdpbiblio.prestamos"/>
+
+		</activity>
+
+		<activity
+			android:name=".ItemDetailActivityd"
+			android:theme="@style/AppTheme.NoActionBar">
+
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value="com.pixels.bdpbiblio.pretamod"/>
 
 		</activity>
 

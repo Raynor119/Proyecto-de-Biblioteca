@@ -1,303 +1,310 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical"
-	android:layout_width="wrap_content"
+	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:layout_marginLeft="100dp">
-
-	<LinearLayout
-		android:orientation="horizontal"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="34dp">
-
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Codigo del Prestamo: "
-			android:textSize="36sp"
-			android:textColor="#000000"/>
-
-		<TextView
-			xmlns:tools="http://schemas.android.com/tools"
-			android:id="@+id/item_detail"
-			android:textSize="36sp"
-			android:textColor="#000000"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textIsSelectable="true"
-			tools:context=".ItemDetailFragment"/>
-
-	</LinearLayout>
-
-	<LinearLayout
-		android:orientation="horizontal"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="100dp"
-		android:gravity="center_vertical">
-
-		<LinearLayout
-			android:orientation="vertical"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginRight="100dp">
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:textColor="#000000"
-				android:textSize="32sp"
-				android:text="Libro Prestado"/>
-
-			<LinearLayout
-				android:orientation="vertical"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:id="@+id/dialogg"
-				android:padding="10dp"
-				android:background="@drawable/carddentro"
-				android:layout_marginTop="10dp">
-
-				<LinearLayout
-					android:orientation="horizontal"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content">
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="23sp"
-						android:textColor="#000000"
-						android:text="Titulo del Libro: "
-						android:layout_gravity="center_horizontal"/>
-
-					<TextView
-						android:layout_width="250dp"
-						android:layout_height="wrap_content"
-						android:textSize="23sp"
-						android:textColor="#000000"
-						android:text="Text"
-						android:layout_gravity="center_horizontal"
-						android:id="@+id/ltl"/>
-
-				</LinearLayout>
-
-				<LinearLayout
-					android:orientation="horizontal"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content">
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="23sp"
-						android:textColor="#000000"
-						android:text="Codigo del Libro: "/>
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="23sp"
-						android:textColor="#000000"
-						android:text="Text"
-						android:id="@+id/cdl"/>
-
-				</LinearLayout>
-
-				<LinearLayout
-					android:orientation="horizontal"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content">
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="23sp"
-						android:textColor="#000000"
-						android:text="Valor del Libro: "/>
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="23sp"
-						android:textColor="#000000"
-						android:text="Text"
-						android:id="@+id/vl"/>
-
-				</LinearLayout>
-
-				<LinearLayout
-					android:orientation="horizontal"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content">
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="23sp"
-						android:textColor="#000000"
-						android:text="Coleccion del Libro: "/>
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="23sp"
-						android:textColor="#000000"
-						android:text="Text"
-						android:id="@+id/clcl"/>
-
-				</LinearLayout>
-
-			</LinearLayout>
-
-		</LinearLayout>
-
-		<LinearLayout
-			android:orientation="vertical"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content">
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:textColor="#000000"
-				android:textSize="32sp"
-				android:text="Usuario"/>
-
-			<LinearLayout
-				android:orientation="vertical"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:padding="10dp"
-				android:background="@drawable/carddentro"
-				android:layout_marginTop="10dp">
-
-				<LinearLayout
-					android:orientation="horizontal"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content">
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="23sp"
-						android:textColor="#000000"
-						android:text="Codigo del Usuario: "/>
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="23sp"
-						android:textColor="#000000"
-						android:text="Text"
-						android:id="@+id/cu"/>
-
-				</LinearLayout>
-
-				<LinearLayout
-					android:orientation="horizontal"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content">
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="23sp"
-						android:textColor="#000000"
-						android:text="Nombre: "/>
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="23sp"
-						android:textColor="#000000"
-						android:text="Text"
-						android:id="@+id/un"/>
-
-				</LinearLayout>
-
-				<LinearLayout
-					android:orientation="horizontal"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content">
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="23sp"
-						android:textColor="#000000"
-						android:text="Apellidos: "/>
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="23sp"
-						android:textColor="#000000"
-						android:text="Text"
-						android:id="@+id/ua"/>
-
-				</LinearLayout>
-
-				<LinearLayout
-					android:orientation="horizontal"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content">
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="23sp"
-						android:textColor="#000000"
-						android:text="Tipo de Usuario: "/>
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="23sp"
-						android:textColor="#000000"
-						android:text="Text"
-						android:id="@+id/tu"/>
-
-				</LinearLayout>
-
-			</LinearLayout>
-
-		</LinearLayout>
-
-	</LinearLayout>
+	android:padding="8dp">
 
 	<LinearLayout
 		android:orientation="vertical"
 		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="225dp"
-		android:layout_gravity="center_horizontal">
+		android:layout_height="match_parent"
+		android:layout_marginLeft="100dp">
 
 		<LinearLayout
 			android:orientation="horizontal"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content">
+			android:layout_height="wrap_content"
+			android:layout_marginTop="34dp">
 
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:textSize="23sp"
-				android:textColor="#000000"
-				android:text="Fecha del Prestamo : "/>
+				android:text="Codigo del Prestamo: "
+				android:textSize="36sp"
+				android:textColor="#000000"/>
 
 			<TextView
+				xmlns:tools="http://schemas.android.com/tools"
+				android:id="@+id/item_detail"
+				android:textSize="36sp"
+				android:textColor="#000000"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:textSize="23sp"
-				android:textColor="#000000"
-				android:text="Text"
-				android:id="@+id/fap"/>
+				android:textIsSelectable="true"
+				tools:context=".ItemDetailFragment"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="100dp"
+			android:gravity="center_vertical">
+
+			<LinearLayout
+				android:orientation="vertical"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginRight="100dp">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="#000000"
+					android:textSize="32sp"
+					android:text="Libro Prestado"/>
+
+				<LinearLayout
+					android:orientation="vertical"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:id="@+id/dialogg"
+					android:padding="10dp"
+					android:background="@drawable/carddentro"
+					android:layout_marginTop="10dp">
+
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textSize="23sp"
+							android:textColor="#000000"
+							android:text="Titulo del Libro: "
+							android:layout_gravity="center_horizontal"/>
+
+						<TextView
+							android:layout_width="250dp"
+							android:layout_height="wrap_content"
+							android:textSize="23sp"
+							android:textColor="#000000"
+							android:text="Text"
+							android:layout_gravity="center_horizontal"
+							android:id="@+id/ltl"/>
+
+					</LinearLayout>
+
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textSize="23sp"
+							android:textColor="#000000"
+							android:text="Codigo del Libro: "/>
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textSize="23sp"
+							android:textColor="#000000"
+							android:text="Text"
+							android:id="@+id/cdl"/>
+
+					</LinearLayout>
+
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textSize="23sp"
+							android:textColor="#000000"
+							android:text="Valor del Libro: "/>
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textSize="23sp"
+							android:textColor="#000000"
+							android:text="Text"
+							android:id="@+id/vl"/>
+
+					</LinearLayout>
+
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textSize="23sp"
+							android:textColor="#000000"
+							android:text="Coleccion del Libro: "/>
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textSize="23sp"
+							android:textColor="#000000"
+							android:text="Text"
+							android:id="@+id/clcl"/>
+
+					</LinearLayout>
+
+				</LinearLayout>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:orientation="vertical"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="#000000"
+					android:textSize="32sp"
+					android:text="Usuario"/>
+
+				<LinearLayout
+					android:orientation="vertical"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="10dp"
+					android:background="@drawable/carddentro"
+					android:layout_marginTop="10dp">
+
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textSize="23sp"
+							android:textColor="#000000"
+							android:text="Codigo del Usuario: "/>
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textSize="23sp"
+							android:textColor="#000000"
+							android:text="Text"
+							android:id="@+id/cu"/>
+
+					</LinearLayout>
+
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textSize="23sp"
+							android:textColor="#000000"
+							android:text="Nombre: "/>
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textSize="23sp"
+							android:textColor="#000000"
+							android:text="Text"
+							android:id="@+id/un"/>
+
+					</LinearLayout>
+
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textSize="23sp"
+							android:textColor="#000000"
+							android:text="Apellidos: "/>
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textSize="23sp"
+							android:textColor="#000000"
+							android:text="Text"
+							android:id="@+id/ua"/>
+
+					</LinearLayout>
+
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textSize="23sp"
+							android:textColor="#000000"
+							android:text="Tipo de Usuario: "/>
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textSize="23sp"
+							android:textColor="#000000"
+							android:text="Text"
+							android:id="@+id/tu"/>
+
+					</LinearLayout>
+
+				</LinearLayout>
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="225dp"
+			android:layout_gravity="center_horizontal">
+
+			<LinearLayout
+				android:orientation="horizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textSize="23sp"
+					android:textColor="#000000"
+					android:text="Fecha del Prestamo : "/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textSize="23sp"
+					android:textColor="#000000"
+					android:text="Text"
+					android:id="@+id/fap"/>
+
+			</LinearLayout>
 
 		</LinearLayout>
 
 	</LinearLayout>
 
-</LinearLayout>
+</ScrollView>
 

@@ -46,6 +46,7 @@ import android.widget.EditText;
 public class prestamos extends AppCompatActivity {
 
      List<vprestamo> vs = new ArrayList<>();
+    List<idd> vss = new ArrayList<>();
    //  * Whether or not the activity is in two-pane mode, i.e. running on a tablet
     // * device.
    //  */
@@ -324,52 +325,101 @@ public class prestamos extends AppCompatActivity {
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
 		ip i=new ip();
-		String ip=i.ip();
-		String Url="http://"+ip+"/vprestamo.php";
-		//Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
-		
-		
+        String ip=i.ip();
+        String Url="http://"+ip+"/vdip.php";
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Url, new Response.Listener<JSONArray>() {
 
-				@Override
-				public void onResponse(JSONArray response) {
-					JSONObject jo = null;
-					for (int i = 0; i < response.length(); i++) {
-						try {
-							jo = response.getJSONObject(i);
-							vs.add(new vprestamo(jo.getString("idp"), jo.getString("fecha"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u"), jo.getString("codigol"), jo.getString("titulo"), jo.getString("valorl"), jo.getString("tipo_coleccion") ));
+                @Override
+                public void onResponse(JSONArray response) {
+                    JSONObject jo = null;
+                    for (int i = 0; i < response.length(); i++) {
+                        try {
+                            jo = response.getJSONObject(i);
 
-						} catch (JSONException e) {
-							Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
+                            vss.add(new idd(jo.getString("id_p")));
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
 
-						}
-					}
-
-					recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(prestamos.this, vs, mTwoPane));
-
-					
-
-					
-
-				}
-			}, new Response.ErrorListener() {
-				@Override
-				public void onErrorResponse(VolleyError error) {
-					new android.os.Handler().postDelayed(new Runnable() {
+                        }
+                    }
+                    
+                    ip i=new ip();
+                    String ip=i.ip();
+                    String Url="http://"+ip+"/vprestamo.php";
+                    //Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
 
 
-							@Override
-							public void run() {
-								//Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
-								
-							}},2000);
-				}
-			});
+                    JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Url, new Response.Listener<JSONArray>() {
+
+                            @Override
+                            public void onResponse(JSONArray response) {
+
+
+                                JSONObject jo = null;
+
+                                for (int b = 0; b < response.length(); b++) {
+                                    try {
+                                        jo = response.getJSONObject(b);
+
+
+                                        vs.add(new vprestamo(jo.getString("idp"), jo.getString("fecha"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u"), jo.getString("codigol"), jo.getString("titulo"), jo.getString("valorl"), jo.getString("tipo_coleccion") ));
+
+                                    } catch (JSONException e) {
+                                        Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
+
+                                    }
+                                }
+                                for(int x=0;x<vss.size();x++){
+                                    for(int b=0;b<vs.size();b++){
+                                        if(vs.get(b).getIdp().equals(vss.get(x).getId_p())){
+                                            vs.remove(b);
+                                        }
+                                    }
+                                }
+                                
+
+                                recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(prestamos.this, vs, mTwoPane));
+
+
+
+
+
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                new android.os.Handler().postDelayed(new Runnable() {
+
+
+                                        @Override
+                                        public void run() {
+                                            //Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
+
+                                        }},2000);
+                            }
+                        });
+                    RequestQueue requestQueue;
+                    requestQueue= Volley.newRequestQueue(getApplicationContext());
+                    requestQueue.add(jsonArrayRequest);
+                    
+                    
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    new android.os.Handler().postDelayed(new Runnable() {
+
+
+                            @Override
+                            public void run() {
+//Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
+
+                            }},2000);
+                }
+            });
         RequestQueue requestQueue;
-        requestQueue= Volley.newRequestQueue(this);
+        requestQueue= Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(jsonArrayRequest);
-		
-		
 		
         
     }
