@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.pixels.bdpbiblio.dummy.DummyContent;
+
 
 import java.util.List;
 
