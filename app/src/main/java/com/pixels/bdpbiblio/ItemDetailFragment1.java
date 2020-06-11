@@ -106,7 +106,7 @@ public class ItemDetailFragment1 extends Fragment {
 						tt="No Tiene multa";
 					}
 					else{
-						tt="Valor de la Multa: "+vs.get(n).getMulta()+"\nEstado de la Muta: ";
+						tt="Valor de la Multa: "+vs.get(n).getMulta()+"\nEstado de la Multa: ";
 						if(vs.get(n).getMulta_d().equals("no")){
 							tt=tt+"No Pagada";
 						}

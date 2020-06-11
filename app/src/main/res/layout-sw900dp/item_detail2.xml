@@ -373,7 +373,7 @@
 				<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Codigo de la Devolucion: "
+					android:text="Codigo de Devolucion: "
 					android:textSize="29sp"
 					android:textColor="#000000"/>
 
@@ -407,7 +407,7 @@
 						android:layout_height="wrap_content"
 						android:textSize="25sp"
 						android:textColor="#000000"
-						android:text="Fecha de la Devolucion:"/>
+						android:text="Fecha de Devolucion:"/>
 
 					<TextView
 						android:layout_width="wrap_content"
@@ -436,7 +436,7 @@
 				android:layout_height="wrap_content"
 				android:textSize="23sp"
 				android:textColor="#000000"
-				android:text="Dias de demora: "/>
+				android:text="Dias de mora: "/>
 
 			<TextView
 				android:layout_width="wrap_content"

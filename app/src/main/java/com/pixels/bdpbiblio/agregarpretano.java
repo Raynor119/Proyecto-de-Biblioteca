@@ -54,7 +54,7 @@ public class agregarpretano extends AppCompatActivity implements View.OnClickLis
     private static final String CERO = "0";
     private static final String DOS_PUNTOS = ":";
     private static final String BARRA = "/";
-	List<nombrel> vs = new ArrayList<>();
+	List<nombrel> vs;
 	public final Calendar c = Calendar.getInstance();
 	Spinner tipou;
 
@@ -174,6 +174,7 @@ public class agregarpretano extends AppCompatActivity implements View.OnClickLis
 				@Override
 				public void onResponse(JSONArray response) {
 					JSONObject jo = null;
+					vs = new ArrayList<>();
 					for (int i = 0; i < response.length(); i++) {
 						try {
 							jo = response.getJSONObject(i);

@@ -54,7 +54,7 @@ public class agregarprestamou extends AppCompatActivity implements View.OnClickL
     private static final String CERO = "0";
     private static final String DOS_PUNTOS = ":";
     private static final String BARRA = "/";
-	List<nombrel> vs = new ArrayList<>();
+	List<nombrel> vs ;
 	public final Calendar c = Calendar.getInstance();
 
     //Fecha
@@ -193,6 +193,7 @@ public class agregarprestamou extends AppCompatActivity implements View.OnClickL
 				@Override
 				public void onResponse(JSONArray response) {
 					JSONObject jo = null;
+					vs= new ArrayList<>();
 					for (int i = 0; i < response.length(); i++) {
 						try {
 							jo = response.getJSONObject(i);
