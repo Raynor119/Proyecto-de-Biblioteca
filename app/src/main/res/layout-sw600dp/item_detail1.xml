@@ -79,7 +79,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:textSize="23sp"
-							android:textColor="#000000"
+							android:textColor="#03A9F4"
 							android:text="Titulo del Libro: "
 							android:layout_gravity="center_horizontal"/>
 
@@ -102,7 +102,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:textSize="23sp"
-							android:textColor="#000000"
+							android:textColor="#03A9F4"
 							android:text="Codigo del Libro: "/>
 
 						<TextView
@@ -123,7 +123,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:textSize="23sp"
-							android:textColor="#000000"
+							android:textColor="#03A9F4"
 							android:text="Valor del Libro: "/>
 
 						<TextView
@@ -145,7 +145,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:textSize="23sp"
-							android:textColor="#000000"
+							android:textColor="#03A9F4"
 							android:text="Coleccion del Libro: "/>
 
 						<TextView
@@ -202,7 +202,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:textSize="23sp"
-							android:textColor="#000000"
+							android:textColor="#03A9F4"
 							android:text="Codigo del Usuario: "/>
 
 						<TextView
@@ -223,7 +223,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:textSize="23sp"
-							android:textColor="#000000"
+							android:textColor="#03A9F4"
 							android:text="Nombre: "/>
 
 						<TextView
@@ -244,7 +244,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:textSize="23sp"
-							android:textColor="#000000"
+							android:textColor="#03A9F4"
 							android:text="Apellidos: "/>
 
 						<TextView
@@ -265,7 +265,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:textSize="23sp"
-							android:textColor="#000000"
+							android:textColor="#03A9F4"
 							android:text="Tipo de Usuario: "/>
 
 						<TextView

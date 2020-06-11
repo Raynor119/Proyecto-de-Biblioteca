@@ -1,6 +1,7 @@
 <resources>
    
 	<string name="title_item_detail">Item Detail</string>
+	
 
 	<string-array name="tipoou">
 		<item>estudiante</item>
@@ -11,7 +12,18 @@
 		
 	</string-array>
     <string name="app_name">Biblioteca</string>
-  
+	<string name="button_reload">Reload</string>
+    <string name="button_list">List</string>
+    <string name="button_list_with_header">List with header</string>
+    <string name="button_grid">Grid</string>
+
+    <string name="animation_slide_from_right">Slide from right</string>
+    <string name="animation_slide_from_bottom">Slide from bottom</string>
+    <string name="animation_fall_down">Fall down</string>
+    <string name="animation_scale">Scale</string>
+    <string name="animation_scale_random">Scale random</string>
+
+    <string name="header_title">First item in the list</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

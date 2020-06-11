@@ -48,6 +48,9 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 import android.widget.Adapter;
+import android.transition.Slide;
+import android.view.Gravity;
+import android.view.animation.DecelerateInterpolator;
 
 
 public class agregarpretano extends AppCompatActivity implements View.OnClickListener {
@@ -85,7 +88,10 @@ public class agregarpretano extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agcuno);
 		Bundle extra = getIntent().getExtras();
-		
+		Slide falden=new Slide(Gravity.START);
+		falden.setDuration(MainActivity.duracion);
+		falden.setInterpolator(new DecelerateInterpolator());
+		getWindow().setEnterTransition(falden);		
 		tipou=(Spinner)findViewById(R.id.tu);
 		
 		codigou=(EditText) findViewById(R.id.cu);

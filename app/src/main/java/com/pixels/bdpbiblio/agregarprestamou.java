@@ -48,6 +48,9 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
 import java.util.Map;
+import android.transition.Slide;
+import android.view.Gravity;
+import android.view.animation.DecelerateInterpolator;
 
 
 public class agregarprestamou extends AppCompatActivity implements View.OnClickListener {
@@ -82,6 +85,10 @@ public class agregarprestamou extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agcu);
 		Bundle extra = getIntent().getExtras();
+		Slide falden=new Slide(Gravity.START);
+		falden.setDuration(MainActivity.duracion);
+		falden.setInterpolator(new DecelerateInterpolator());
+		getWindow().setEnterTransition(falden);
 		codig=extra.getString("codigo");
 		String nn=extra.getString("saca");
 		l=Integer.parseInt(nn);

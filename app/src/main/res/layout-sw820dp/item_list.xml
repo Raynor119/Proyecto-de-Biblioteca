@@ -87,6 +87,7 @@
 								android:name="com.pixels.bdpbiblio.ItemListFragment"
 								android:layout_width="@dimen/item_width"
 								android:layout_height="match_parent"
+								android:layoutAnimation="@anim/layout_animation_from_right"
 								app:layoutManager="LinearLayoutManager"
 								android:background="@drawable/tabletpres"
 								tools:listitem="@layout/item_list_content"

@@ -34,6 +34,14 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.zip.Inflater;
 import android.widget.EditText;
+import android.view.animation.LayoutAnimationController;
+import android.view.animation.AnimationUtils;
+import android.transition.Fade;
+import android.view.animation.DecelerateInterpolator;
+import android.transition.Slide;
+import android.view.Gravity;
+import android.transition.Transition;
+import android.support.v4.app.ActivityOptionsCompat;
 
 /**
  * An activity representing a list of Items. This activity
@@ -49,6 +57,9 @@ public class prestamos extends AppCompatActivity {
     List<idd> vss = new ArrayList<>();
    //  * Whether or not the activity is in two-pane mode, i.e. running on a tablet
     // * device.
+	private Transition transicion;
+	public static final long duracion=1000;
+	private final prestamos mParentActivity=this;
    //  */
     private boolean mTwoPane;
 	private Context content=this;
@@ -59,6 +70,10 @@ public class prestamos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prestamo);
+		Slide falden=new Slide(Gravity.START);
+		falden.setDuration(MainActivity.duracion);
+		falden.setInterpolator(new DecelerateInterpolator());
+		getWindow().setEnterTransition(falden);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,7 +182,13 @@ public class prestamos extends AppCompatActivity {
 																					Toast.makeText(getApplicationContext(),"El Usuario no puede Sacar mas Libros hasta que los devuelva",Toast.LENGTH_LONG).show();
 																					
 																				}else{
-																				startActivity(intent);
+																					transicion=new Slide(Gravity.START);
+																					transicion.setDuration(duracion);
+																					transicion.setInterpolator(new DecelerateInterpolator());
+																					getWindow().setExitTransition(transicion);
+
+																					startActivity(intent,ActivityOptionsCompat.makeSceneTransitionAnimation(mParentActivity).toBundle());
+																				
 																				finish();
 																				}
 
@@ -294,7 +315,13 @@ public class prestamos extends AppCompatActivity {
 						@Override
 						public void onClick(DialogInterface dialog,int which){
 							Intent intent=new Intent(prestamos.this,agregarpretano.class);
-							startActivity(intent);
+							transicion=new Slide(Gravity.START);
+							transicion.setDuration(duracion);
+							transicion.setInterpolator(new DecelerateInterpolator());
+							getWindow().setExitTransition(transicion);
+
+							startActivity(intent,ActivityOptionsCompat.makeSceneTransitionAnimation(mParentActivity).toBundle());
+							
 							finish();
 
 							
@@ -380,8 +407,10 @@ public class prestamos extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "No hay prestamos", Toast.LENGTH_LONG).show();
                                     
                                 }else{
+									
 
                                 recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(prestamos.this, vs, mTwoPane));
+								animacion(recyclerView);
 }
 
 
@@ -426,6 +455,13 @@ public class prestamos extends AppCompatActivity {
 		
         
     }
+	private void animacion(RecyclerView recyclerView){
+		Context context=recyclerView.getContext();
+		LayoutAnimationController animacion= AnimationUtils.loadLayoutAnimation(context,R.anim.layout_animation_from_right);
+		recyclerView.setLayoutAnimation(animacion);
+		recyclerView.getAdapter().notifyDataSetChanged();
+		recyclerView.scheduleLayoutAnimation();
+	}
 	
 
     public static class SimpleItemRecyclerViewAdapter
@@ -433,6 +469,8 @@ public class prestamos extends AppCompatActivity {
 
         private final prestamos mParentActivity;
         private final List<vprestamo> vprestamos;
+		private Transition transicion;
+		public static final long duracion=1000;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
@@ -455,8 +493,12 @@ public class prestamos extends AppCompatActivity {
 					
                     intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, item.getIdp());
 					intent.putExtra("ippt",item.getIdp());
+					transicion=new Slide(Gravity.START);
+					transicion.setDuration(duracion);
+					transicion.setInterpolator(new DecelerateInterpolator());
+					mParentActivity.getWindow().setExitTransition(transicion);
 
-                    context.startActivity(intent);
+                    context.startActivity(intent,ActivityOptionsCompat.makeSceneTransitionAnimation(mParentActivity).toBundle());
                 }
             }
         };

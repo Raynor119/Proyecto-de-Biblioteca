@@ -25,6 +25,16 @@ public final class R {
         public static final int design_fab_out=0x7f05000d;
         public static final int design_snackbar_in=0x7f05000e;
         public static final int design_snackbar_out=0x7f05000f;
+        public static final int grid_layout_animation_from_bottom=0x7f050010;
+        public static final int grid_layout_animation_scale=0x7f050011;
+        public static final int grid_layout_animation_scale_random=0x7f050012;
+        public static final int item_animation_fall_down=0x7f050013;
+        public static final int item_animation_from_bottom=0x7f050014;
+        public static final int item_animation_from_right=0x7f050015;
+        public static final int item_animation_scale=0x7f050016;
+        public static final int layout_animation_fall_down=0x7f050017;
+        public static final int layout_animation_from_bottom=0x7f050018;
+        public static final int layout_animation_from_right=0x7f050019;
     }
     public static final class animator {
         public static final int design_appbar_state_list_animator=0x7f060000;
@@ -3474,6 +3484,8 @@ containing a value of this type.
     public static final class integer {
         public static final int abc_config_activityDefaultDur=0x7f0b0005;
         public static final int abc_config_activityShortDur=0x7f0b0006;
+        public static final int anim_duration_long=0x7f0b000a;
+        public static final int anim_duration_medium=0x7f0b0009;
         public static final int app_bar_elevation_anim_duration=0x7f0b0001;
         public static final int bottom_sheet_slide_duration=0x7f0b0002;
         public static final int cancel_button_image_alpha=0x7f0b0007;
@@ -3609,11 +3621,21 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with=0x7f0c0018;
         public static final int abc_shareactionprovider_share_with_application=0x7f0c0019;
         public static final int abc_toolbar_collapse_description=0x7f0c001a;
+        public static final int animation_fall_down=0x7f0c0031;
+        public static final int animation_scale=0x7f0c0032;
+        public static final int animation_scale_random=0x7f0c0033;
+        public static final int animation_slide_from_bottom=0x7f0c0030;
+        public static final int animation_slide_from_right=0x7f0c002f;
         public static final int app_name=0x7f0c002a;
         public static final int appbar_scrolling_view_behavior=0x7f0c0000;
         public static final int bottom_sheet_behavior=0x7f0c0001;
+        public static final int button_grid=0x7f0c002e;
+        public static final int button_list=0x7f0c002c;
+        public static final int button_list_with_header=0x7f0c002d;
+        public static final int button_reload=0x7f0c002b;
         public static final int character_counter_pattern=0x7f0c0002;
-        public static final int large_text=0x7f0c002b;
+        public static final int header_title=0x7f0c0034;
+        public static final int large_text=0x7f0c0035;
         public static final int password_toggle_content_description=0x7f0c0003;
         public static final int path_password_eye=0x7f0c0004;
         public static final int path_password_eye_mask_strike_through=0x7f0c0005;

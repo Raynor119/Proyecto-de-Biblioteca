@@ -9,6 +9,9 @@ import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
+import android.transition.Slide;
+import android.view.Gravity;
+import android.view.animation.DecelerateInterpolator;
 
 /**
  * An activity representing a single Item detail screen. This
@@ -26,6 +29,11 @@ public class ItemDetailActivity1 extends AppCompatActivity {
         setSupportActionBar(toolbar);
 		Bundle extra = getIntent().getExtras();
 		ipt=extra.getString("ippt");
+		Slide falden=new Slide(Gravity.START);
+		falden.setDuration(MainActivity.duracion);
+		falden.setInterpolator(new DecelerateInterpolator());
+		getWindow().setEnterTransition(falden);
+		
 
 
         // Show the Up button in the action bar.

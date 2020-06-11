@@ -50,6 +50,13 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.zip.Inflater;
 import android.widget.EditText;
+import android.view.animation.LayoutAnimationController;
+import android.view.animation.AnimationUtils;
+import android.transition.Slide;
+import android.view.Gravity;
+import android.view.animation.DecelerateInterpolator;
+import android.transition.Transition;
+import android.support.v4.app.ActivityOptionsCompat;
 
 /**
  * An activity representing a list of Items. This activity
@@ -67,11 +74,18 @@ public class devolucion extends AppCompatActivity {
      */
 	List<vdevolucion> vs = new ArrayList<>();
     private boolean mTwoPane;
+	private final devolucion mParentActivity=this;
 	EditText codig;
+	private Transition transicion;
+	public static final long duracion=1000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_devolucion);
+		Slide falden=new Slide(Gravity.START);
+		falden.setDuration(MainActivity.duracion);
+		falden.setInterpolator(new DecelerateInterpolator());
+		getWindow().setEnterTransition(falden);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -119,7 +133,11 @@ public class devolucion extends AppCompatActivity {
 												//si hay usuario
 												Intent intent=new Intent(devolucion.this,pretamod.class);
                                                 intent.putExtra("codigo",codig.getText().toString());
-                                                startActivity(intent);
+                                                transicion=new Slide(Gravity.START);
+												transicion.setDuration(duracion);
+												transicion.setInterpolator(new DecelerateInterpolator());
+												mParentActivity.getWindow().setExitTransition(transicion);
+												startActivity(intent,ActivityOptionsCompat.makeSceneTransitionAnimation(mParentActivity).toBundle());
 												finish();
 												
 												
@@ -221,6 +239,7 @@ public class devolucion extends AppCompatActivity {
                         
 					
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(devolucion.this, vs, mTwoPane));
+		animacion(recyclerView);
         }
 				}
 			}, new Response.ErrorListener() {
@@ -241,12 +260,22 @@ public class devolucion extends AppCompatActivity {
         requestQueue.add(jsonArrayRequest);
 	}
 
+	private void animacion(RecyclerView recyclerView){
+		Context context=recyclerView.getContext();
+		LayoutAnimationController animacion= AnimationUtils.loadLayoutAnimation(context,R.anim.layout_animation_from_right);
+		recyclerView.setLayoutAnimation(animacion);
+		recyclerView.getAdapter().notifyDataSetChanged();
+		recyclerView.scheduleLayoutAnimation();
+	}
+	
     public static class SimpleItemRecyclerViewAdapter
 	extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final devolucion mParentActivity;
         private final List<vdevolucion> mValues;
         private final boolean mTwoPane;
+		private Transition transicion;
+		public static final long duracion=1000;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -266,8 +295,12 @@ public class devolucion extends AppCompatActivity {
                     intent.putExtra(ItemDetailFragment1.ARG_ITEM_ID, item.getIdd());
 					intent.putExtra("ippt",item.getIdd());
                     //Toast.makeText(context, item.getIdd(),Toast.LENGTH_LONG).show();
+                    transicion=new Slide(Gravity.START);
+					transicion.setDuration(duracion);
+					transicion.setInterpolator(new DecelerateInterpolator());
+					mParentActivity.getWindow().setExitTransition(transicion);
+                    context.startActivity(intent,ActivityOptionsCompat.makeSceneTransitionAnimation(mParentActivity).toBundle());
                     
-                    context.startActivity(intent);
                 }
             }
         };

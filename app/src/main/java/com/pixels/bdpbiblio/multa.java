@@ -52,6 +52,13 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.zip.Inflater;
 import android.widget.EditText;
+import android.view.animation.LayoutAnimationController;
+import android.view.animation.AnimationUtils;
+import android.transition.Slide;
+import android.view.Gravity;
+import android.view.animation.DecelerateInterpolator;
+import android.transition.Transition;
+import android.support.v4.app.ActivityOptionsCompat;
 
 
 
@@ -68,7 +75,10 @@ public class multa extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multa);
-
+		Slide falden=new Slide(Gravity.START);
+		falden.setDuration(MainActivity.duracion);
+		falden.setInterpolator(new DecelerateInterpolator());
+		getWindow().setEnterTransition(falden);
        
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -121,7 +131,9 @@ public class multa extends AppCompatActivity {
 
                     }else{
 
-                        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(multa.this, vs, mTwoPane));
+                
+						recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(multa.this, vs, mTwoPane));
+						animacion(recyclerView);
                     }
                 }
             }, new Response.ErrorListener() {
@@ -144,12 +156,20 @@ public class multa extends AppCompatActivity {
         
        
     }
-
+	private void animacion(RecyclerView recyclerView){
+		Context context=recyclerView.getContext();
+		LayoutAnimationController animacion= AnimationUtils.loadLayoutAnimation(context,R.anim.layout_animation_from_right);
+		recyclerView.setLayoutAnimation(animacion);
+		recyclerView.getAdapter().notifyDataSetChanged();
+		recyclerView.scheduleLayoutAnimation();
+	}
     public static class SimpleItemRecyclerViewAdapter
 	extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final multa mParentActivity;
         private final List<multaa> mValues;
+		private Transition transicion;
+		public static final long duracion=1000;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
@@ -169,7 +189,12 @@ public class multa extends AppCompatActivity {
                     Intent intent = new Intent(context, ItemDetailActivity2.class);
                     intent.putExtra(ItemDetailFragment2.ARG_ITEM_ID, item.getIdm());
                     intent.putExtra("ippt",item.getIdm());
-                    context.startActivity(intent);
+                    transicion=new Slide(Gravity.START);
+					transicion.setDuration(duracion);
+					transicion.setInterpolator(new DecelerateInterpolator());
+					mParentActivity.getWindow().setExitTransition(transicion);
+
+                    context.startActivity(intent,ActivityOptionsCompat.makeSceneTransitionAnimation(mParentActivity).toBundle());
                 }
             }
         };

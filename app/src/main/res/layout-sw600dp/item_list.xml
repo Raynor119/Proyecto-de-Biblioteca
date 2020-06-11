@@ -22,6 +22,7 @@
 		android:background="@drawable/tabletpres"
 		app:layoutManager="LinearLayoutManager"
 		tools:listitem="@layout/item_list_content"
+		android:layoutAnimation="@anim/layout_animation_from_right"
 		android:padding="18dp"
 		/>
 
