@@ -100,11 +100,11 @@ public class ItemDetailFragment extends Fragment {
 						}
 						
 					}
-					((TextView) rootView.findViewById(R.id.item_detail)).setText(vs.get(n).getIdp());
-					((TextView) rootView.findViewById(R.id.ltl)).setText(vs.get(n).getTitulo());
-					((TextView) rootView.findViewById(R.id.cdl)).setText(vs.get(n).getCodigoL());
-					((TextView) rootView.findViewById(R.id.vl)).setText(vs.get(n).getValorL());
-					((TextView) rootView.findViewById(R.id.clcl)).setText(vs.get(n).getTipoC());
+					//((TextView) rootView.findViewById(R.id.item_detail)).setText(vs.get(n).getIdp());
+					//((TextView) rootView.findViewById(R.id.ltl)).setText(vs.get(n).getTitulo());
+					//((TextView) rootView.findViewById(R.id.cdl)).setText(vs.get(n).getCodigoL());
+					//((TextView) rootView.findViewById(R.id.vl)).setText(vs.get(n).getValorL());
+					//((TextView) rootView.findViewById(R.id.clcl)).setText(vs.get(n).getTipoC());
 					
 					((TextView) rootView.findViewById(R.id.cu)).setText(vs.get(n).getCodigoU());
 					((TextView) rootView.findViewById(R.id.un)).setText(vs.get(n).getNombres());

@@ -53,106 +53,27 @@
 			<LinearLayout
 				android:orientation="vertical"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
+				android:layout_height="150dp"
+				android:textSize="23sp"
+				android:textColor="#000000"
 				android:background="@drawable/carddentro"
 				android:id="@+id/dialogg"
-				android:layout_marginTop="10dp">
+				android:layout_marginTop="10dp"
+				android:padding="20dp">
 
-				<LinearLayout
-					android:orientation="vertical"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginLeft="20dp">
-
-					<LinearLayout
-						android:orientation="horizontal"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_marginTop="10dp">
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textSize="23sp"
-							android:textColor="#03A9F4"
-							android:text="Titulo del Libro: "
-							android:layout_gravity="center_horizontal"/>
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textSize="23sp"
-							android:textColor="#000000"
-							android:layout_gravity="center_horizontal"
-							android:id="@+id/ltl"/>
-
-					</LinearLayout>
-
-					<LinearLayout
-						android:orientation="horizontal"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content">
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textSize="23sp"
-							android:textColor="#03A9F4"
-							android:text="Codigo del Libro: "/>
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textSize="23sp"
-							android:textColor="#000000"
-							android:id="@+id/cdl"/>
-
-					</LinearLayout>
-
-					<LinearLayout
-						android:orientation="horizontal"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content">
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textSize="23sp"
-							android:textColor="#03A9F4"
-							android:text="Valor del Libro: "/>
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textSize="23sp"
-							android:textColor="#000000"
-							android:id="@+id/vl"/>
-
-					</LinearLayout>
-
-					<LinearLayout
-						android:orientation="horizontal"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_marginBottom="10dp">
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textSize="23sp"
-							android:textColor="#03A9F4"
-							android:text="Coleccion del Libro: "/>
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textSize="23sp"
-							android:textColor="#000000"
-							android:id="@+id/clcl"/>
-
-					</LinearLayout>
-
-				</LinearLayout>
+				<android.support.v7.widget.RecyclerView
+					xmlns:app="http://schemas.android.com/apk/res-auto"
+					xmlns:tools="http://schemas.android.com/tools"
+					android:id="@+id/item_list"
+					android:name="com.pixels.bdpbiblio.ItemListFragment"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_marginLeft="16dp"
+					android:layout_marginRight="16dp"
+					app:layoutManager="LinearLayoutManager"
+					android:layoutAnimation="@anim/layout_animation_from_right"
+					tools:context=".ItemListActivity"
+					tools:listitem="@layout/item_list_content"/>
 
 			</LinearLayout>
 

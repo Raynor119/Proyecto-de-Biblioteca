@@ -381,16 +381,19 @@ public class prestamos extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONArray response) {
 
-
+								String ns="";
                                 JSONObject jo = null;
 
                                 for (int b = 0; b < response.length(); b++) {
                                     try {
                                         jo = response.getJSONObject(b);
-
-
-                                        vs.add(new vprestamo(jo.getString("idp"), jo.getString("fecha"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u"), jo.getString("codigol"), jo.getString("titulo"), jo.getString("valorl"), jo.getString("tipo_coleccion") ));
-
+										if (jo.getString("idp").equals(ns)){
+										}else{
+											ns=jo.getString("idp");
+											vs.add(new vprestamo(jo.getString("idp"), jo.getString("fecha"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u"), jo.getString("codigol"), jo.getString("titulo"), jo.getString("valorl"), jo.getString("tipo_coleccion") ));
+											
+										}
+                                       
                                     } catch (JSONException e) {
                                        // Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
 
