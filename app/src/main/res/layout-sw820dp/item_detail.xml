@@ -40,12 +40,12 @@
 			android:orientation="horizontal"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="100dp"
+			android:layout_marginTop="150dp"
 			android:gravity="center_vertical">
 
 			<LinearLayout
 				android:orientation="vertical"
-				android:layout_width="wrap_content"
+				android:layout_width="400dp"
 				android:layout_height="wrap_content"
 				android:layout_marginRight="100dp">
 
@@ -54,111 +54,26 @@
 					android:layout_height="wrap_content"
 					android:textColor="#000000"
 					android:textSize="32sp"
+					android:id="@+id/ll"
 					android:text="Libro Prestado"/>
 
-				<LinearLayout
-					android:orientation="vertical"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:id="@+id/dialogg"
-					android:padding="10dp"
-					android:background="@drawable/carddentro"
-					android:layout_marginTop="10dp">
-
-					<LinearLayout
-						android:orientation="horizontal"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content">
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textSize="23sp"
-							android:textColor="#03A9F4"
-							android:text="Titulo del Libro: "
-							android:layout_gravity="center_horizontal"/>
-
-						<TextView
-							android:layout_width="250dp"
-							android:layout_height="wrap_content"
-							android:textSize="23sp"
-							android:textColor="#000000"
-							android:layout_gravity="center_horizontal"
-							android:id="@+id/ltl"/>
-
-					</LinearLayout>
-
-					<LinearLayout
-						android:orientation="horizontal"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content">
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textSize="23sp"
-							android:textColor="#03A9F4"
-							android:text="Codigo del Libro: "/>
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textSize="23sp"
-							android:textColor="#000000"
-							android:id="@+id/cdl"/>
-
-					</LinearLayout>
-
-					<LinearLayout
-						android:orientation="horizontal"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content">
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textSize="23sp"
-							android:textColor="#03A9F4"
-							android:text="Valor del Libro: "/>
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textSize="23sp"
-							android:textColor="#000000"
-							android:id="@+id/vl"/>
-
-					</LinearLayout>
-
-					<LinearLayout
-						android:orientation="horizontal"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content">
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textSize="23sp"
-							android:textColor="#03A9F4"
-							android:text="Coleccion del Libro: "/>
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textSize="23sp"
-							android:textColor="#000000"
-							android:id="@+id/clcl"/>
-
-					</LinearLayout>
-
-				</LinearLayout>
+				<android.support.v7.widget.RecyclerView
+					xmlns:app="http://schemas.android.com/apk/res-auto"
+					xmlns:tools="http://schemas.android.com/tools"
+					android:layout_marginTop="10dp"
+					android:id="@+id/item_list"
+					android:layout_width="match_parent"
+					android:layout_height="190dp"
+					app:layoutManager="LinearLayoutManager"
+					android:layoutAnimation="@anim/layout_animation_from_right"
+					android:background="@drawable/carddentro"/>
 
 			</LinearLayout>
 
 			<LinearLayout
 				android:orientation="vertical"
 				android:layout_width="wrap_content"
-				android:layout_height="wrap_content">
+				android:layout_height="match_parent">
 
 				<TextView
 					android:layout_width="wrap_content"
@@ -171,7 +86,7 @@
 					android:orientation="vertical"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:padding="10dp"
+					android:padding="20dp"
 					android:background="@drawable/carddentro"
 					android:layout_marginTop="10dp">
 
@@ -269,7 +184,7 @@
 			android:orientation="vertical"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="225dp"
+			android:layout_marginTop="190dp"
 			android:layout_gravity="center_horizontal">
 
 			<LinearLayout

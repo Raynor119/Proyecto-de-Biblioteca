@@ -27,11 +27,11 @@
        
         $codigo=$_GET['codigo'];
         $fecha=$_GET['fecha'];
-        $codigol=$_GET['codigol'];
+       
         echo $codigo;
         echo $fecha;
-        echo $codigol;
-        $query = "insert into prestamo (codigo_u,fecha,codigo_l) values('".$codigo."','".$fecha."','".$codigol."')";
+        
+        $query = "insert into prestamo (codigo_u,fecha) values('".$codigo."','".$fecha."')";
         $consulta = pg_query($conexion, $query);
 
         pg_close($conexion);

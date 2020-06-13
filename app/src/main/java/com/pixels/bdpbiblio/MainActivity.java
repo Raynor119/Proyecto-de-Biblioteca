@@ -30,14 +30,7 @@ public class MainActivity extends AppCompatActivity
 		getWindow().setExitTransition(transicion);
 		startActivity(intent,ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle());
 	}
-	public void onclic2(View view){
-		Intent intent = new Intent(MainActivity.this,multa.class);
-		transicion=new Slide(Gravity.START);
-		transicion.setDuration(duracion);
-		transicion.setInterpolator(new DecelerateInterpolator());
-		getWindow().setExitTransition(transicion);
-		startActivity(intent,ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle());
-	}
+	
 	public void onclic3(View view){
 		Intent intent = new Intent(MainActivity.this,devolucion.class);
 		transicion=new Slide(Gravity.START);

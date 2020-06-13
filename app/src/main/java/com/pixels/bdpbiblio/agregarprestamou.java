@@ -53,9 +53,13 @@ import android.view.Gravity;
 import android.view.animation.DecelerateInterpolator;
 
 
-public class agregarprestamou extends AppCompatActivity implements View.OnClickListener {
+public class agregarprestamou extends AppCompatActivity{
     private static final String CERO = "0";
     private static final String DOS_PUNTOS = ":";
+
+	List<idd> vsq = new ArrayList<>();
+	List<idd> vq = new ArrayList<>();
+    List<idd> vss = new ArrayList<>();
     private static final String BARRA = "/";
 	List<nombrel> vs ;
 	public final Calendar c = Calendar.getInstance();
@@ -94,8 +98,7 @@ public class agregarprestamou extends AppCompatActivity implements View.OnClickL
 		l=Integer.parseInt(nn);
 		vec= new String[3-l];
 		etFecha = (EditText) findViewById(R.id.et_mostrar_fecha_picker);
-		ibObtenerFecha = (ImageButton) findViewById(R.id.ib_obtener_fecha);
-		ibObtenerFecha.setOnClickListener(this);
+		obtenerFecha();
 		ip i=new ip();
 		String ip=i.ip();
 		String Url="http://"+ip+"/busuario.php?codigo="+codig;
@@ -154,14 +157,7 @@ public class agregarprestamou extends AppCompatActivity implements View.OnClickL
 		
 		
 	}
-	@Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.ib_obtener_fecha:
-                obtenerFecha();
-                break;
-        }
-    }
+
 	private void obtenerFecha(){
         DatePickerDialog recogerFecha = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
 				@Override
@@ -177,8 +173,16 @@ public class agregarprestamou extends AppCompatActivity implements View.OnClickL
 
 				}
 			},anio, mes, dia);
+		final int mesActual = mes + 1;
 
-        recogerFecha.show();
+		String diaFormateado = (dia < 10)? CERO + String.valueOf(dia):String.valueOf(dia);
+		String mesFormateado = (mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
+
+		etFecha.setText(mesFormateado + BARRA + diaFormateado + BARRA + anio);
+		//Toast.makeText(getApplicationContext(), "ano: "+anio+" mes: "+mes+1+" dia: "+dia,Toast.LENGTH_LONG).show();
+		
+
+        //recogerFecha.show();
 
     }
 	
@@ -336,11 +340,9 @@ public class agregarprestamou extends AppCompatActivity implements View.OnClickL
 				
 			}else{
 				
-				for(int c=0;c< mUserItems.size();c++){
-				
 				ip i=new ip();
 				String ip=i.ip();
-					String Url="http://"+ip+"/codigolibro.php?codigo="+vec[c];
+				String Url="http://"+ip+"/insertprestamo.php?codigo="+codig+"&fecha="+etFecha.getText().toString();
 				//Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
 
 
@@ -349,64 +351,16 @@ public class agregarprestamou extends AppCompatActivity implements View.OnClickL
 						@Override
 						public void onResponse(JSONArray response) {
 							JSONObject jo = null;
-							String codigol="";
 							for (int i = 0; i < response.length(); i++) {
 								try {
 									jo = response.getJSONObject(i);
-									codigol=jo.getString("codigo");
 									//vs.add(new vprestamo(jo.getString("idp"), jo.getString("fecha"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u"), jo.getString("codigol"), jo.getString("titulo"), jo.getString("valorl"), jo.getString("tipo_coleccion") ));
-									
+
 								} catch (JSONException e) {
 									Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
 
 								}
 							}
-							
-							ip i=new ip();
-							String ip=i.ip();
-							String Url="http://"+ip+"/insertprestamo.php?codigo="+codig+"&fecha="+etFecha.getText().toString()+"&codigol="+codigol;
-							//Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
-
-
-							JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Url, new Response.Listener<JSONArray>() {
-
-									@Override
-									public void onResponse(JSONArray response) {
-										JSONObject jo = null;
-										for (int i = 0; i < response.length(); i++) {
-											try {
-												jo = response.getJSONObject(i);
-												//vs.add(new vprestamo(jo.getString("idp"), jo.getString("fecha"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u"), jo.getString("codigol"), jo.getString("titulo"), jo.getString("valorl"), jo.getString("tipo_coleccion") ));
-
-											} catch (JSONException e) {
-												Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
-
-											}
-										}
-
-
-
-
-
-
-									}
-								}, new Response.ErrorListener() {
-									@Override
-									public void onErrorResponse(VolleyError error) {
-										new android.os.Handler().postDelayed(new Runnable() {
-
-
-												@Override
-												public void run() {
-													//Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
-													//finish();
-												}},2000);
-									}
-								});
-							RequestQueue requestQueue;
-							requestQueue= Volley.newRequestQueue(getApplicationContext());
-							requestQueue.add(jsonArrayRequest);
-							
 
 
 
@@ -422,18 +376,265 @@ public class agregarprestamou extends AppCompatActivity implements View.OnClickL
 
 									@Override
 									public void run() {
-										Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
-										finish();
+										//Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
+										//finish();
 									}},2000);
 						}
 					});
 				RequestQueue requestQueue;
-				requestQueue= Volley.newRequestQueue(this);
+				requestQueue= Volley.newRequestQueue(getApplicationContext());
 				requestQueue.add(jsonArrayRequest);
+
+
+
+
+
+				new android.os.Handler().postDelayed(new Runnable(){
+
+						@Override
+						public void run()
+						{
+							ip i=new ip();
+							String ip=i.ip();
+							String Url="http://"+ip+"/libxpre.php";
+							JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Url, new Response.Listener<JSONArray>() {
+
+									@Override
+									public void onResponse(JSONArray response) {
+										JSONObject jo = null;
+										for (int i = 0; i < response.length(); i++) {
+											try {
+												jo = response.getJSONObject(i);
+
+												vss.add(new idd(jo.getString("idp")));
+											} catch (JSONException e) {
+												//  Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
+
+											}
+										}
+
+										ip i=new ip();
+										String ip=i.ip();
+										String Url="http://"+ip+"/vpre.php";
+										//Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
+
+
+										JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Url, new Response.Listener<JSONArray>() {
+
+												@Override
+												public void onResponse(JSONArray response) {
+
+													String ns="";
+													JSONObject jo = null;
+
+													for (int b = 0; b < response.length(); b++) {
+														try {
+															jo = response.getJSONObject(b);
+															if (jo.getString("idp").equals(ns)){
+															}else{
+																ns=jo.getString("idp");
+																vsq.add(new idd(jo.getString("idp")));
+															}
+
+														} catch (JSONException e) {
+															// Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
+
+														}
+													}
+
+													int mx=vss.size();
+													System.out.println(mx);
+													int ca=vsq.size();
+													System.out.println(ca);
+
+
+													for(int x=0;x<vss.size();x++){
+														for(int b=0;b<vsq.size();b++){
+															if(vsq.get(b).getId_p().equals(vss.get(x).getId_p())){
+																vsq.remove(b);
+															}
+														}
+													}
+													for(int x=0;x<vsq.size();x++){
+														String m=vsq.get(x).getId_p();
+														System.out.println(m);
+
+													}
+													if(vs.size()==0){
+														Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+
+													}else{
+
+
+
+														new android.os.Handler().postDelayed(new Runnable() {
+
+
+																@Override
+																public void run() {
+																	for(int c=0;c< mUserItems.size();c++){
+
+																		ip i=new ip();
+																		String ip=i.ip();
+																		String Url="http://"+ip+"/codigolibro.php?codigo="+vec[c];
+																		//Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
+
+
+																		JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Url, new Response.Listener<JSONArray>() {
+
+																				@Override
+																				public void onResponse(JSONArray response) {
+																					JSONObject jo = null;
+																					String codigol="";
+																					for (int i = 0; i < response.length(); i++) {
+																						try {
+																							jo = response.getJSONObject(i);
+																							codigol=jo.getString("codigo");
+																							//vs.add(new vprestamo(jo.getString("idp"), jo.getString("fecha"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u"), jo.getString("codigol"), jo.getString("titulo"), jo.getString("valorl"), jo.getString("tipo_coleccion") ));
+
+																						} catch (JSONException e) {
+																							Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
+
+																						}
+																					}
+
+																					ip i=new ip();
+																					String ip=i.ip();
+																					String Url="http://"+ip+"/insertlibxpre.php?idp="+vsq.get(0).getId_p()+"&codigo="+codigol;
+																					//Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
+
+
+																					JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Url, new Response.Listener<JSONArray>() {
+
+																							@Override
+																							public void onResponse(JSONArray response) {
+																								JSONObject jo = null;
+																								for (int i = 0; i < response.length(); i++) {
+																									try {
+																										jo = response.getJSONObject(i);
+																										//vs.add(new vprestamo(jo.getString("idp"), jo.getString("fecha"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u"), jo.getString("codigol"), jo.getString("titulo"), jo.getString("valorl"), jo.getString("tipo_coleccion") ));
+
+																									} catch (JSONException e) {
+																										Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
+
+																									}
+																								}
+
+
+
+
+
+
+																							}
+																						}, new Response.ErrorListener() {
+																							@Override
+																							public void onErrorResponse(VolleyError error) {
+																								new android.os.Handler().postDelayed(new Runnable() {
+
+
+																										@Override
+																										public void run() {
+																											//Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
+																											//finish();
+																										}},2000);
+																							}
+																						});
+																					RequestQueue requestQueue;
+																					requestQueue= Volley.newRequestQueue(getApplicationContext());
+																					requestQueue.add(jsonArrayRequest);
+
+
+
+
+
+
+
+
+
+																				}
+																			}, new Response.ErrorListener() {
+																				@Override
+																				public void onErrorResponse(VolleyError error) {
+																					new android.os.Handler().postDelayed(new Runnable() {
+
+
+																							@Override
+																							public void run() {
+																								Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
+																								finish();
+																							}},2000);
+																				}
+																			});
+																		RequestQueue requestQueue;
+																		requestQueue= Volley.newRequestQueue(getApplicationContext());
+																		requestQueue.add(jsonArrayRequest);
+
+
+
+																	}
+																}},2000);
+
+													}
+
+
+
+
+												}
+											}, new Response.ErrorListener() {
+												@Override
+												public void onErrorResponse(VolleyError error) {
+													new android.os.Handler().postDelayed(new Runnable() {
+
+
+															@Override
+															public void run() {
+																//Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
+
+															}},2000);
+												}
+											});
+										RequestQueue requestQueue;
+										requestQueue= Volley.newRequestQueue(getApplicationContext());
+										requestQueue.add(jsonArrayRequest);
+
+
+									}
+								}, new Response.ErrorListener() {
+									@Override
+									public void onErrorResponse(VolleyError error) {
+										new android.os.Handler().postDelayed(new Runnable() {
+
+
+												@Override
+												public void run() {
+//Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
+
+												}},2000);
+									}
+								});
+							RequestQueue requestQueue;
+							requestQueue= Volley.newRequestQueue(getApplicationContext());
+							requestQueue.add(jsonArrayRequest);
+						}
+
+
+					},2000);
+
+
+
+
+
+
+
+
 				
 				
 				
-				}
+				
+				
+				
+				
+				
 				
 				
 				finish();

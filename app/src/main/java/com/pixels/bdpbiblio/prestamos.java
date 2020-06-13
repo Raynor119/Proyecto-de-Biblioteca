@@ -54,6 +54,7 @@ import android.support.v4.app.ActivityOptionsCompat;
 public class prestamos extends AppCompatActivity {
 
      List<vprestamo> vs = new ArrayList<>();
+	List<idd> vq = new ArrayList<>();
     List<idd> vss = new ArrayList<>();
    //  * Whether or not the activity is in two-pane mode, i.e. running on a tablet
     // * device.
@@ -62,8 +63,10 @@ public class prestamos extends AppCompatActivity {
 	private final prestamos mParentActivity=this;
    //  */
     private boolean mTwoPane;
+	int kl=0;
 	private Context content=this;
 	int prestmo=0;
+	int contedl=0;
 	int devueltos=0;
 	EditText codig;
     @Override
@@ -93,7 +96,7 @@ public class prestamos extends AppCompatActivity {
 								.setPositiveButton("si", new DialogInterface.OnClickListener(){
 									@Override
 									public void onClick(DialogInterface dialog,int which){
-										
+										contedl=0;
 										
 										
 										
@@ -125,76 +128,83 @@ public class prestamos extends AppCompatActivity {
 													
 													if(si==1){
 														
+														
+														
 														ip i=new ip();
 														String ip=i.ip();
-
-														String Url="http://"+ip+"/prestamo.php?codigo="+codig.getText().toString();
-														//Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
-
-
+														String Url="http://"+ip+"/vdip.php";
 														JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Url, new Response.Listener<JSONArray>() {
 
 																@Override
 																public void onResponse(JSONArray response) {
+																	vss = new ArrayList<>();
 																	JSONObject jo = null;
 																	for (int i = 0; i < response.length(); i++) {
 																		try {
 																			jo = response.getJSONObject(i);
-																			prestmo=Integer.parseInt(jo.getString("prestamo"));
 
+																			vss.add(new idd(jo.getString("id_p")));
 																		} catch (JSONException e) {
-																			Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
+																			//  Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
 
 																		}
 																	}
+
 																	ip i=new ip();
 																	String ip=i.ip();
-																	String Url1="http://"+ip+"/devueltos.php?codigo="+codig.getText().toString();
+																	String Url="http://"+ip+"/vprestamo.php";
 																	//Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
 
 
-																	JsonArrayRequest jsonArrayRequest1=new JsonArrayRequest(Url1, new Response.Listener<JSONArray>() {
+																	JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Url, new Response.Listener<JSONArray>() {
 
 																			@Override
 																			public void onResponse(JSONArray response) {
+																				vs = new ArrayList<>();
+																				String ns="";
 																				JSONObject jo = null;
-																				for (int i = 0; i < response.length(); i++) {
+																				final String nn=codig.getText().toString();
+
+																				for (int b = 0; b < response.length(); b++) {
 																					try {
-																						jo = response.getJSONObject(i);
-																						devueltos=Integer.parseInt(jo.getString("devoueltos"));
-
-
+																						jo = response.getJSONObject(b);
+																						if (jo.getString("idp").equals(ns)){
+																						}else{
+																							if(jo.getString("codigo").equals(nn)){
+																							ns=jo.getString("idp");
+																							vs.add(new vprestamo(jo.getString("idp"), jo.getString("fecha"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u"), jo.getString("codigol"), jo.getString("titulo"), jo.getString("valorl"), jo.getString("tipo_coleccion") ));
+																							}
+																						}
 
 																					} catch (JSONException e) {
-																						Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
+																						// Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
 
 																					}
 																				}
-																				//Toast.makeText(getApplicationContext(),"pretados: "+prestmo+" "+"Devueltos: "+devueltos,Toast.LENGTH_LONG).show();
-
-
-																				String nn=codig.getText().toString();
-																				Intent intent=new Intent(prestamos.this,agregarprestamou.class);
-																				intent.putExtra("codigo",nn);
-																				int puede=prestmo-devueltos;
-																				intent.putExtra("saca",puede+"");
-																				if(puede==3){
-																					Toast.makeText(getApplicationContext(),"El Usuario no puede Sacar mas Libros hasta que los devuelva",Toast.LENGTH_LONG).show();
-																					
-																				}else{
-																					transicion=new Slide(Gravity.START);
-																					transicion.setDuration(duracion);
-																					transicion.setInterpolator(new DecelerateInterpolator());
-																					getWindow().setExitTransition(transicion);
-
-																					startActivity(intent,ActivityOptionsCompat.makeSceneTransitionAnimation(mParentActivity).toBundle());
-																				
-																				finish();
+																				for(int x=0;x<vss.size();x++){
+																					for(int b=0;b<vs.size();b++){
+																						if(vs.get(b).getIdp().equals(vss.get(x).getId_p())){
+																							vs.remove(b);
+																						}
+																					}
 																				}
+																				
+																				
+																					
+																				
+																					
+																				
+																				
+																				
+																				
+																					
+																					
+																					
+																				
+																				 
 
 
-
-
+																				
 
 
 
@@ -208,18 +218,14 @@ public class prestamos extends AppCompatActivity {
 
 																						@Override
 																						public void run() {
-																							Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
-																							finish();
+																							//Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
+
 																						}},2000);
 																			}
 																		});
-																	RequestQueue requestQueue1;
-																	requestQueue1= Volley.newRequestQueue(getApplicationContext());
-																	requestQueue1.add(jsonArrayRequest1);
-
-
-
-
+																	RequestQueue requestQueue;
+																	requestQueue= Volley.newRequestQueue(getApplicationContext());
+																	requestQueue.add(jsonArrayRequest);
 
 
 																}
@@ -231,24 +237,123 @@ public class prestamos extends AppCompatActivity {
 
 																			@Override
 																			public void run() {
-																				Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
-																				finish();
+//Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
+
 																			}},2000);
 																}
 															});
 														RequestQueue requestQueue;
 														requestQueue= Volley.newRequestQueue(getApplicationContext());
 														requestQueue.add(jsonArrayRequest);
+														
+														
+														
+														new android.os.Handler().postDelayed(new Runnable() {
 
 
-														
-														
-														
-														
-														
-														
-														
-														
+																@Override
+																public void run() {
+																	if(vs.size()==0){
+																	
+																	}else{
+																		ip i=new ip();
+																		String ip=i.ip();
+																		String Url3="http://"+ip+"/libxpre.php";
+																		JsonArrayRequest jsonArrayRequest3=new JsonArrayRequest(Url3, new Response.Listener<JSONArray>() {
+
+																				@Override
+																				public void onResponse(JSONArray response) {
+																					vq = new ArrayList<>();
+
+																					JSONObject jo = null;
+																					final String nn=codig.getText().toString();
+
+																					for (int b = 0; b < response.length(); b++) {
+																						int ns=0;
+																						try {
+																							jo = response.getJSONObject(b);
+																							if(vs.get(ns).getIdp().equals( jo.getString("idp"))){
+																								vq.add(new idd(jo.getString("idp")));
+
+																							}else{
+																								ns++;
+																								if(ns<vs.size()){
+																									if(vs.get(ns).getIdp().equals( jo.getString("idp"))){
+																										vq.add(new idd(jo.getString("idp")));
+																									}
+																								}
+																							}
+
+																						}
+
+																						catch (JSONException e) {
+																							// Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
+
+																						}
+
+																					}
+																				}
+																			}, new Response.ErrorListener() {
+																				@Override
+																				public void onErrorResponse(VolleyError error) {
+																					new android.os.Handler().postDelayed(new Runnable() {
+
+
+																							@Override
+																							public void run() {
+																								//Toast.makeText(getApplicationContext(), "Error de Conexion Verifique su conexion a Internet",Toast.LENGTH_LONG).show();
+
+																							}},2000);
+																				}
+																			});
+
+																		//q=x;
+																		//final String m=vs.get(x).getIdp();
+																		//System.out.println(m);
+
+
+																		RequestQueue requestQueue3;
+																		requestQueue3= Volley.newRequestQueue(getApplicationContext());
+																		requestQueue3.add(jsonArrayRequest3);
+
+
+
+																		for(int x=0;x<vq.size();x++){
+																			String qq=vq.get(x).getId_p();
+																			System.out.println(qq);
+																		}
+																	}
+
+																	new android.os.Handler().postDelayed(new Runnable() {
+
+
+																			@Override
+																			public void run() {
+														if(vq.size()<3){
+															//Toast.makeText(getApplicationContext(),"entro del for4 2:"+vq.size(),Toast.LENGTH_LONG).show();
+															final String nn=codig.getText().toString();
+															Intent intent=new Intent(prestamos.this,agregarprestamou.class);
+															intent.putExtra("codigo",nn);
+															int cod=contedl;
+															//Toast.makeText(getApplicationContext(),""+cod,Toast.LENGTH_LONG).show();
+															intent.putExtra("saca",vq.size()+"");
+															transicion=new Slide(Gravity.START);
+															transicion.setDuration(duracion);
+															transicion.setInterpolator(new DecelerateInterpolator());
+															getWindow().setExitTransition(transicion);
+															startActivity(intent,ActivityOptionsCompat.makeSceneTransitionAnimation(mParentActivity).toBundle());
+
+															finish();
+
+														}else{
+															Toast.makeText(getApplicationContext(),"El Usuario no puede Sacar mas Libros hasta que los devuelva",Toast.LENGTH_LONG).show();
+
+
+														}
+
+																			}},2000);
+
+																}},2000);
 														
 														
 														
@@ -406,6 +511,11 @@ public class prestamos extends AppCompatActivity {
                                         }
                                     }
                                 }
+								for(int x=0;x<vs.size();x++){
+									String m=vs.get(x).getIdp();
+									System.out.println(m);
+
+								}
                                 if(vs.size()==0){
                                     Toast.makeText(getApplicationContext(), "No hay prestamos", Toast.LENGTH_LONG).show();
                                     
