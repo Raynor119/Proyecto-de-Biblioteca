@@ -82,7 +82,7 @@ public class prestamos extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 				AlertDialog.Builder alert= new AlertDialog.Builder(prestamos.this);
-				alert.setMessage("El Usuario ya se habia Registrado")
+				alert.setMessage("El Usuario es de la Universidad")
 					.setCancelable(false)
 					.setPositiveButton("si", new DialogInterface.OnClickListener(){
 						@Override

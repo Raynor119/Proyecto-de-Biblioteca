@@ -116,25 +116,7 @@
 
 				</LinearLayout>
 
-				<LinearLayout
-					android:orientation="horizontal"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content">
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="23sp"
-						android:textColor="#000000"
-						android:text="Tipo de Usuario: "/>
-
-					<Spinner
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:textSize="27sp"
-						android:id="@+id/tu"/>
-
-				</LinearLayout>
+				
 
 			</LinearLayout>
 
@@ -169,13 +151,7 @@
 				android:editable="false"
 				android:hint="fecha"/>
 
-			<ImageButton
-				android:id="@+id/ib_obtener_fecha"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:src="@mipmap/ic_event_white_24dp"
-				android:background="#0092D7"/>
-
+		
 		</LinearLayout>
 
 		<Button

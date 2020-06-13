@@ -167,12 +167,7 @@
 				android:editable="false"
 				android:hint="fecha"/>
 
-			<ImageButton
-				android:id="@+id/ib_obtener_fecha"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:src="@mipmap/ic_event_white_24dp"
-				android:background="#0092D7"/>
+			
 
 		</LinearLayout>
 

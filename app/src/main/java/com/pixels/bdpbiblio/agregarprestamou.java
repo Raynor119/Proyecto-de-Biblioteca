@@ -572,6 +572,8 @@ public class agregarprestamou extends AppCompatActivity{
 
 
 																	}
+																	Toast.makeText(getApplicationContext(), "Se guardaron los datos", Toast.LENGTH_LONG).show();
+																	
 																}},2000);
 
 													}
