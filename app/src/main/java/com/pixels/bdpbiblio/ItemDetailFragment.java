@@ -30,7 +30,7 @@ public class ItemDetailFragment extends Fragment {
      * represents.
 	 final List<libro> ll = new ArrayList<>();
      */
- List<libro> ll = new ArrayList<>();
+ List<libro> ll;
 	List<vprestamo> vs = new ArrayList<>();
     public static final String ARG_ITEM_ID = "item_id";
 
@@ -194,6 +194,7 @@ public class ItemDetailFragment extends Fragment {
 				TextView Texs =(TextView) view.findViewById(R.id.cdl);
 				ip i=new ip();
 				String ip=i.ip();
+				ll= new ArrayList<>();
 				String Url="http://"+ip+"/libro.php?codigo="+Texs.getText().toString();
 				//Toast.makeText(getApplicationContext(), Url,Toast.LENGTH_LONG).show();
 
