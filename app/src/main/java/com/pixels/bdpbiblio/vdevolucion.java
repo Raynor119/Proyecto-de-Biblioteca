@@ -2,11 +2,12 @@ package com.pixels.bdpbiblio;
 
 public class vdevolucion
 {
-	private String Idd,Fecha,Multa,Multa_d,Idp,CodigoU,Nombres,Apellidos,Tipo_u,CodigoL,Titulo,ValorL,TipoC;
+	private String Idd,Fecha,Fecha_p,Multa,Multa_d,Idp,CodigoU,Nombres,Apellidos,Tipo_u;
 	
-	public vdevolucion(String idd,String fecha,String multa,String multa_d,String idp,String codigoU,String nombres,String apellidos,String tipo_u,String codigoL,String titulo,String valorL,String tipoC){
+	public vdevolucion(String idd,String fecha,String fecha_p,String multa,String multa_d,String idp,String codigoU,String nombres,String apellidos,String tipo_u){
 		this.Idd=idd;
 		this.Fecha=fecha;
+		this.Fecha_p=fecha_p;
 		this.Multa=multa;
 		this.Multa_d=multa_d;
 		this.Idp=idp;
@@ -14,10 +15,7 @@ public class vdevolucion
 		this.Nombres=nombres;
 		this.Apellidos=apellidos;
 		this.Tipo_u=tipo_u;
-		this.CodigoL=codigoL;
-		this.Titulo=titulo;
-		this.ValorL=valorL;
-		this.TipoC=tipoC;
+		
 	}
 	public String getIdd(){
 		return Idd;
@@ -30,6 +28,12 @@ public class vdevolucion
 	}
 	public void setFecha(String fecha){
 		Fecha=fecha;
+	}
+	public String getFechap(){
+		return Fecha_p;
+	}
+	public void setFechap(String fecha){
+		Fecha_p=fecha;
 	}
 	public String getMulta(){
 		return Multa;
@@ -74,28 +78,6 @@ public class vdevolucion
 	public void setTipoU(String tipoU){
 		Tipo_u=tipoU;
 	}
-	public String getCodigoL(){
-		return CodigoL;
-	}
-	public void setCodigoL(String codigoL){
-		CodigoL=codigoL;
-	}
-	public String getTitulo(){
-		return Titulo;
-	}
-	public void setTitulo(String titulo){
-		Titulo=titulo;
-	}
-	public String getValorL(){
-		return ValorL;
-	}
-	public void setValorL(String valorL){
-		ValorL=valorL;
-	}
-	public String getTipoC(){
-		return TipoC;
-	}
-	public void setTipoC(String tipoC){
-		TipoC=tipoC;
-	}
+	
+	
 }

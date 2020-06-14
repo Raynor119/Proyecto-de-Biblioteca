@@ -225,7 +225,7 @@ public class devolucion extends AppCompatActivity {
 					for (int i = 0; i < response.length(); i++) {
 						try {
 							jo = response.getJSONObject(i);
-							vs.add(new vdevolucion(jo.getString("idd"), jo.getString("fecha"), jo.getString("multa"), jo.getString("multa_d"),jo.getString("idp"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u"), jo.getString("codigol"), jo.getString("titulo"), jo.getString("valorl"), jo.getString("tipo_coleccion") ));
+							vs.add(new vdevolucion(jo.getString("idd"), jo.getString("fecha"),jo.getString("fecha_p"), jo.getString("multa"), jo.getString("multa_d"),jo.getString("idp"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u")));
 
 						} catch (JSONException e) {
 							//Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();

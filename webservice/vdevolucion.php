@@ -28,8 +28,7 @@ else
 
 //echo 'conexion correctamente';
 
-$query = "SELECT idd,devolucion.fecha,multa,multa_d,idp,usuario.codigo,nombres,apellidos,tipo_u,(libro.codigo) as codigoL,titulo,valorl,tipo_coleccion FROM (((((prestamo inner join usuario on prestamo.codigo_u=usuario.codigo)inner join persona on usuario.codigo=persona.codigo)inner join libro on prestamo.codigo_L=libro.codigo)inner join coleccion on libro.idcoleccion=coleccion.id)inner join devolucion on prestamo.idp=devolucion.id_p)"; 
-
+$query = "SELECT idd,devolucion.fecha,prestamo.fecha as fecha_p,multa,multa_d,idp,usuario.codigo,nombres,apellidos,tipo_u FROM (((prestamo inner join usuario on prestamo.codigo_u=usuario.codigo)inner join persona on usuario.codigo=persona.codigo)inner join devolucion on prestamo.idp=devolucion.id_p)";
 $consulta = pg_query($conexion, $query);
 
 if(!$consulta){
