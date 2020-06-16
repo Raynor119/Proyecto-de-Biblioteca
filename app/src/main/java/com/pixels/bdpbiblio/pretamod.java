@@ -118,15 +118,19 @@ public class pretamod extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONArray response) {
 
-
+								String ns="";
                                 JSONObject jo = null;
 
                                 for (int b = 0; b < response.length(); b++) {
                                     try {
                                         jo = response.getJSONObject(b);
+										
+										if (jo.getString("idp").equals(ns)){
+										}else{
+											ns=jo.getString("idp");
+											vs.add(new vprestamo(jo.getString("idp"), jo.getString("fecha"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u"), jo.getString("codigol"), jo.getString("titulo"), jo.getString("valorl"), jo.getString("tipo_coleccion") ));
 
-
-                                        vs.add(new vprestamo(jo.getString("idp"), jo.getString("fecha"), jo.getString("codigo"), jo.getString("nombres"), jo.getString("apellidos"), jo.getString("tipo_u"), jo.getString("codigol"), jo.getString("titulo"), jo.getString("valorl"), jo.getString("tipo_coleccion") ));
+										}
 
                                     } catch (JSONException e) {
                                         Toast.makeText(getApplicationContext(), "error de Bd", Toast.LENGTH_LONG).show();
@@ -265,7 +269,7 @@ public class pretamod extends AppCompatActivity {
             holder.mContentView.setText(vprestamos.get(position).getIdp());
 			holder.nn.setText(vprestamos.get(position).getNombres());
             holder.mm.setText(vprestamos.get(position).getTipoU());
-            holder.titu.setText(vprestamos.get(position).getTitulo());
+           
             holder.itemView.setTag(vprestamos.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
         }
@@ -279,7 +283,7 @@ public class pretamod extends AppCompatActivity {
             final TextView mIdView;
             final TextView mContentView;
 			final TextView nn;
-            final TextView titu;
+            
             final TextView mm;
 
 
@@ -288,7 +292,7 @@ public class pretamod extends AppCompatActivity {
                 mIdView = (TextView) view.findViewById(R.id.id_text);
                 mContentView = (TextView) view.findViewById(R.id.content);
 				nn = (TextView) view.findViewById(R.id.nm);
-                titu=(TextView) view.findViewById(R.id.titu);
+             
 				mm = (TextView) view.findViewById(R.id.tp);
             }
         }

@@ -31,7 +31,7 @@ else
 $codigo=$_GET['codigo'];
 
 
-$query = "SELECT idp,prestamo.fecha,usuario.codigo,nombres,apellidos,tipo_u,(libro.codigo) as codigoL,titulo,valorl,tipo_coleccion FROM ((((prestamo inner join usuario on prestamo.codigo_u=usuario.codigo)inner join persona on usuario.codigo=persona.codigo)inner join libro on prestamo.codigo_L=libro.codigo)inner join coleccion on libro.idcoleccion=coleccion.id) where prestamo.idp='$codigo' order by idp desc"; 
+$query = "SELECT prestamo.idp,prestamo.fecha,usuario.codigo,nombres,apellidos,tipo_u,(libro.codigo) as codigoL,titulo,valorl,tipo_coleccion FROM (((((prestamo inner join usuario on prestamo.codigo_u=usuario.codigo)inner join persona on usuario.codigo=persona.codigo)inner join prestamoslibros on prestamo.idp=prestamoslibros.idp)inner join libro on prestamoslibros.codigo=libro.codigo)inner join coleccion on libro.idcoleccion=coleccion.id) where prestamo.idp='$codigo' order by idp desc"; 
 
 $consulta = pg_query($conexion, $query);
 

@@ -11,8 +11,15 @@ alter table librosautores
 add primary key (codigo,codigoa),
 add foreign key (codigo) references libro(codigo),
 add foreign key (codigoa) references autor(codigo);
+create table dia (id int primary key not null,dias_sala int not null,dias_reserva int not null,dias_U int not null,dias_D int not null,Dias_A int not null,Dias_O int not null);
+
 create table coleccion(id varchar primary key not null,nombredecoleccion text not null,
-					   tipo_coleccion text not null default 'reserva',check(tipo_coleccion='reserva' or tipo_coleccion='sala'));
+					   tipo_coleccion text not null default 'reserva',check(tipo_coleccion='reserva' or tipo_coleccion='sala'),id_dias int not null);
+
+alter table coleccion
+add foreign key (id_dias) references dia(id);
+
+
 alter table libro
 add foreign key (idcoleccion) references coleccion(id);
 
@@ -22,21 +29,21 @@ alter table usuario
 add foreign key (codigo) references persona(codigo);
 
 create table prestamo(idp serial,codigo_u varchar(13) not null,
-					  fecha date not null default now(),codigo_l varchar(6) not null);
+					  fecha date not null default now());
 alter table prestamo
 add primary key (idp),
-add foreign key (codigo_u) references usuario(codigo),
-add foreign key (codigo_l) references libro(codigo);
+add foreign key (codigo_u) references usuario(codigo);
 
 create table devolucion(idd serial,id_p int not null,fecha date not null,multa bigint,multa_d text null);
 alter table devolucion
 add primary key (idd),
 add foreign key (id_p) references prestamo(idp);
 
-create table multa(idm serial,id_d int not null,vmulta bigint,multap text not null);
-alter table multa
-add primary key (idm),
-add foreign key (id_d) references devolucion(idd);
+create table prestamoslibros(idp int not null,codigo varchar(6) not null);
+alter table prestamoslibros
+add primary key (idp,codigo),
+add foreign key (idp) references prestamo(idp),
+add foreign key (codigo) references libro(codigo);
 
 SET DateStyle TO European;
 
@@ -63,8 +70,10 @@ insert into autor values('7dfsaq');
 insert into autor values('wxca12');
 insert into autor values('6s12da');
 
-insert into coleccion values('21wea','Literatura','sala');
-insert into coleccion values('sda12','Fisica');
+insert into dia values(1,10,3,2,5,5,1);
+
+insert into coleccion values('21wea','Literatura','sala',1);
+insert into coleccion values('sda12','Fisica','reserva',1);
 
 insert into libro values('qw3425','Cien años de soledad','edicion de 2017','Ciudad de Mexico',1967,'Random','El libro se compone de 20 capítulos no titulados, en los cuales se narra una historia con una estructura cíclica temporal, puesto que los acontecimientos del pueblo y de la familia Buendía, así como los nombres de los personajes, se repiten una y otra vez, fusionando la fantasía con la realidad.',80000,'21wea');
 insert into libro values('xc4513','Derecho administrativo mínimo','edicion de 2020','Salamanca',2020,'Amarante','Editorial Amarante presenta DERECHO ADMINISTRATIVO MÍNIMO. Última obra del prestigioso jurista José Ramón Chaves (Magistrado especialista de lo contencioso-administrativo. Doctor en Derecho)',70000,'sda12');
