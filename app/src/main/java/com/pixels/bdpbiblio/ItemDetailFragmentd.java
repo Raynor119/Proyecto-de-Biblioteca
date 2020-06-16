@@ -185,7 +185,7 @@ int dias=3;
 						((TextView) rootView.findViewById(R.id.un)).setText(vs.get(n).getNombres());
 						((TextView) rootView.findViewById(R.id.ua)).setText(vs.get(n).getApellidos());
 						((TextView) rootView.findViewById(R.id.tu)).setText(vs.get(n).getTipoU());
-						Toast.makeText(getActivity(), ""+vs.size(),Toast.LENGTH_LONG).show();
+						//Toast.makeText(getActivity(), ""+vs.size(),Toast.LENGTH_LONG).show();
 						
 						//((TextView) rootView.findViewById(R.id.fap)).setText(vs.get(n).getFecha());
 					}
